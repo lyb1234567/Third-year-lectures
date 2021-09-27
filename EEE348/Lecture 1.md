@@ -2,7 +2,7 @@
 
 ### Trends
 
-![image-20210927143905807](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210927143905807.png)
+![image-20210927143905807](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE348/FET.png)
 
 where  $\lambda$ is the half Pitch length. When scaling there are some components which will be changed:
 
