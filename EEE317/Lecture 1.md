@@ -5,7 +5,7 @@
 
 ### DSBSC(Double sideband supress carrier)
 
-- More effiecient
+- More efficient
 - Higher cost
 - More complex
 
@@ -15,7 +15,7 @@
 
 It will be used to detect DSBSC.
 
-![coherent dector](C:\Users\刘研博\Desktop\学习\Third-year-lectures\EEE317\3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg)
+![3-s2.0-B9780128053454000093-f09-01-9780128053454](C:\Users\admin\Desktop\学习\Third-year-lectures\EEE317\3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg)
 
 
 
@@ -211,6 +211,10 @@ $$
 which means that $SNR_{O}<2SNR_{i}$
 
 where in DSBSC $SNR_{O}=2SNR_{i}$ ,that's the reason why DSBLC is  less efficient that DSBSC.
+
+
+
+
 
 ### Aim of this Course
 
