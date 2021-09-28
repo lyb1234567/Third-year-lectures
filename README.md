@@ -2,7 +2,7 @@
 This is my third year lecture resources:
 
 1. [EEE317](https://github.com/lyb1234567/Third-year-lectures/tree/master/EEE317)
-2. [ACS342](hhttps://github.com/lyb1234567/Third-year-lectures/tree/master/ACS342)
+2. [ACS342](https://github.com/lyb1234567/Third-year-lectures/tree/master/ACS342)
 3. [EEE339](https://github.com/lyb1234567/Third-year-lectures/tree/master/EEE339)
 4. [EEE348](https://github.com/lyb1234567/Third-year-lectures/tree/master/EEE348)
 5. [EEE380](https://github.com/lyb1234567/Third-year-lectures/tree/master/EEE380)
