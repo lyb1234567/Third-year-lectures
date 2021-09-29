@@ -15,7 +15,7 @@
 
 It will be used to detect DSBSC.
 
-![3-s2.0-B9780128053454000093-f09-01-9780128053454](C:\Users\admin\Desktop\学习\Third-year-lectures\EEE317\3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg)
+![image-20210929112924014](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929112924014.png)
 
 
 
@@ -215,6 +215,114 @@ where in DSBSC $SNR_{O}=2SNR_{i}$ ,that's the reason why DSBLC is  less efficien
 
 
 
+
+### Signal power in FM systems
+
+
+
+Limiter: To stop fluctuation, and set the certain value we want.
+
+The FM signal can be represented by:
+$$
+s_{i}(t)=\alpha\cos(w_{c}t+c\int_{0}^{t}{f(\tau)}d\tau)
+$$
+where $\alpha$ is the signal amplitude and c is a constant.
+
+And the instantaneous frequency can be written as the derivative of the phase:
+$$
+f_{i}=\frac{d}{dt}(w_{c}t+c\int_{0}^{t}{f(\tau)}d\tau)=w_{c}+cf(t)
+$$
+ Let's assume a FM receiver looks like this:
+
+![FM_receiver](\\studata10\home\EL\Elc20yl\ManW10\Desktop\ECE\Third-year-lectures\EEE317\FM_receiver.png)
+
+ The signal after the demodulation is proportional  to the difference between **instantaneous frequency and carrier frequency.**
+
+Just a quick recall for FM demodulation
+
+![image-20210929100502445](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929100502445.png)
+
+Let's say the $y_{fM}$ is
+$$
+y_{fm}(t)=Ec \cos(w_{c}t+c\int{m(t)dt})
+$$
+After the differentiator, the signal will be
+$$
+-E{c}(w_{c}+cm(t))sin(w_{c}t+c\int{m(t)dt})
+$$
+Then what we need to do just simply use the envelope detector to extract the amplitude
+$$
+wc+c(t)
+$$
+
+
+Then the output will be proportional to $w_{c}+c(t)-w_{c}$, where $w_{c}+c(t)$ is the **instantaneous frequency**
+
+So that's the reason why the final output is $s_{o}(t)=Kcf(t)$ where $K$ depends on the receiver.
+
+
+
+### Noise in FM
+
+When considering the noise, we can just simply add them up to an unmodulated carrier frequency:
+$$
+=\alpha \cos(w_{t})+n_{c}(t)cos(w_{t}t)-n_{s}sin(w_{c}t)\\
+=r(t)cos(w_{c}t+\gamma(t))
+$$
+![image-20210929104249344](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929104249344.png)
+
+In this phasor diagram, either $n_{c}t$ or$\alpha$ has been multiplied by $w_{c}t$,  while $-sin\alpha=cos(\alpha-90^{o})$, so that's the reason why $n_{s}(t)$ is clockwise $90^{o}$ between  the cos term.
+
+
+
+And from the diagram,we can see that:
+$$
+\alpha+n_{c}t=r(t)cos(\gamma(t))\\
+n_{s}(t)=r(t)sin(\gamma(t))
+$$
+And substitute them into the original signal we can get the expression of r(t)
+
+
+
+According to FM, we need to know the instantaneous frequency:
+$$
+\gamma(t)=tan^{-1}(\frac{n_{s}(t)}{\alpha+n_{s}(t)})\approx tan^{-1}(\frac{n_{s}}{\alpha})\approx\frac{n_{s}(t)}{\alpha}(limit)
+$$
+where we just assume that $n_{s}(t)<<\alpha$, $n_{s}(t)<<\alpha$(**quite important!!!**)
+
+
+
+And accordingly, the final output nosie:
+$$
+n_{o}(t)=\frac{K}{\alpha}\frac{d}{dt}n_{s}(t)
+$$
+The output noise power could be caculated by using Parseval's theorem:
+$$
+\frac{1}{\pi}\int_{-\infty}^{\infty}|x(t)|^{2}dt=\frac{1}{2\pi}\int_{-\infty}^{\infty}|X(w)|^{2}dw\\
+N_{o}=\frac{1}{2\pi}\int_{-\infty}^{\infty}S_{no}(w)dw
+$$
+
+$$
+S_{no}(w)=\frac{K^{2}w^{2}}{\alpha^{2}}\eta
+$$
+
+where $\eta$ it the white noise which has the same magnitude of  output frequency
+
+
+
+
+
+Hence the noise output from the demodulator will increase with the square of the frequency deviation.
+
+#### Risk
+
+When increasing the frequency, the **output signal** will become **very weak.**
+
+
+
+#### Solution
+
+**Pre-emphasis filter** and  **De-emphasis filter** to set a certain frequency limit before the noise is introduced
 
 ### Aim of this Course
 
