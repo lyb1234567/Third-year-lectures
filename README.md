@@ -17,6 +17,6 @@ This is my third year lecture resources:
 
 - [x] Preparations  for Friday's meeting with Professor Xiao Li Chu
 - [ ] Finish course material of EEE348
-- [ ] Finish course material of EEE339
+- [x] Finish course material of EEE339
 - [x] Finish course material of EEE317
 
