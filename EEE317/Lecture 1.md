@@ -83,7 +83,7 @@ $$
 
 ### Q1
 
-- [ ] **Why?**
+- [x] **Why?**  Cause when the noise is random, we assume that they are equal to each other although that I don't the exact reason......
 
 
 
@@ -108,7 +108,7 @@ since the double angles was 0 during the integral.
 So as shown before, accoding to DSBSC demodulation:
 $$
 S_{i}(t)=f(t)\cos(w_{c}t)\\
-S_{o}(t)=S_{i}(t)\cos (w_{c}t)=S_{i}(t)cos^{2}(w_{c}t)
+S_{o}(t)=S_{i}(t)\cos (w_{c}t)=f(t)cos^{2}(w_{c}t)
 $$
 Since the $2w_{c}$ term will be filtered off. Then the obtained signal will be
 $$
@@ -117,7 +117,7 @@ $$
 
 ### Q2
 
-- [ ] **Why**?
+- [x] **Why**? Ttpo......
 
 
 
