@@ -19,5 +19,5 @@ This is my third year lecture resources:
 - [ ] Finish course material of EEE348
 - [x] Finish course material of EEE339
 - [x] Finish course material of EEE317
-- [ ] Finish course material of MGT388
+- [x] Finish course material of MGT388
 
