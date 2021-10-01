@@ -15,7 +15,7 @@
 
 It will be used to detect DSBSC.
 
-![image-20210930123742771](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210930123742771.png)
+![image-20211001151434609](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151434609.png)
 
 
 
@@ -117,7 +117,7 @@ $$
 
 ### Q2
 
-- [x] **Why**? Ttpo......
+- [x] **Why**? Typo......
 
 
 
@@ -179,7 +179,7 @@ And r(t) is the output of the envelope detector
 
 As for envelope detector:
 
-  ![envelope_detector](C:\Users\admin\Desktop\学习\Third-year-lectures\EEE317\envelope_detector.png)
+![image-20211001151640401](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151640401.png)
 
 
 
@@ -234,13 +234,13 @@ f_{i}=\frac{d}{dt}(w_{c}t+c\int_{0}^{t}{f(\tau)}d\tau)=w_{c}+cf(t)
 $$
  Let's assume a FM receiver looks like this:
 
-![FM_receiver](\\studata10\home\EL\Elc20yl\ManW10\Desktop\ECE\Third-year-lectures\EEE317\FM_receiver.png)
+![image-20211001151508624](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151508624.png)
 
  The signal after the demodulation is proportional  to the difference between **instantaneous frequency and carrier frequency.**
 
 Just a quick recall for FM demodulation
 
-![image-20210929100502445](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929100502445.png)
+![image-20211001151546483](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151546483.png)
 
 Let's say the $y_{fM}$ is
 $$
