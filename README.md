@@ -21,3 +21,12 @@ This is my third year lecture resources:
 - [x] Finish course material of EEE317
 - [x] Finish course material of MGT388
 
+
+
+#### Week2
+
+- [ ] Finish course material of EEE339
+- [ ] Finish course material of EEE348
+- [ ] Finish course material of EEE317
+- [ ] Finish course material of MGT388
+- [ ] Search for at least three third-year project related paper for Xiao li
