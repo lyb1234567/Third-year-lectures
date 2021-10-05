@@ -84,4 +84,4 @@ This is very inefficient!!
 
 ![image-20211005122244629](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211005122244629.png)
 
-In the first stage, we introduce some errors so we don't amplify the signal instead we use the  channel coding to analyse the signal (like what errors have been introduced)and start the whole process again
+In the first stage, we introduce some errors so we don't amplify the signal instead we use the  channel coding to analyse the signal (like what errors have been introduced)and start the whole process agains
