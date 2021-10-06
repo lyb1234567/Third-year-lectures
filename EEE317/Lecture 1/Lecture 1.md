@@ -238,7 +238,7 @@ $$
 
 Just a quick recall for FM demodulation
 
-![image-20211001151546483](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151546483.png)
+![FM_demodulation.PNG](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/FM_demodulation.PNG?raw=true)
 
 Let's say the $y_{fM}$ is
 $$
