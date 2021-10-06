@@ -267,7 +267,7 @@ $$
 =\alpha \cos(w_{t})+n_{c}(t)cos(w_{t}t)-n_{s}sin(w_{c}t)\\
 =r(t)cos(w_{c}t+\gamma(t))
 $$
-![image-20210929104249344](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929104249344.png)
+![phasor_diagram.PNG](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/phasor_diagram.PNG?raw=true)
 
 In this phasor diagram, either $n_{c}t$ or$\alpha$ has been multiplied by $w_{c}t$,  while $-sin\alpha=cos(\alpha-90^{o})$, so that's the reason why $n_{s}(t)$ is clockwise $90^{o}$ between  the cos term.
 
@@ -304,11 +304,7 @@ $$
 S_{no}(w)=\frac{K^{2}w^{2}}{\alpha^{2}}\eta
 $$
 
-where $\eta$ it the white noise which has the same magnitude of  output frequency
-
-
-
-
+where $\eta$ it the white noise which has the same magnitude of  output frequency and the **white noise is independent of system frequency**
 
 Hence the noise output from the demodulator will increase with the square of the frequency deviation.
 
@@ -321,6 +317,20 @@ When increasing the frequency, the **output signal** will become **very weak.**
 #### Solution
 
 **Pre-emphasis filter** and  **De-emphasis filter** to set a certain frequency limit before the noise is introduced
+
+
+
+**Pre-Emphasis Circuit**
+
+![img](https://img.brainkart.com/imagebk14/LxUbCIa.jpg)
+
+![img](https://img.brainkart.com/imagebk14/chOWa9q.jpg)
+
+**De-Emphasis Circuit**:
+
+![img](https://img.brainkart.com/imagebk14/TSbwBw2.jpg)
+
+![img](https://img.brainkart.com/imagebk14/IhJ2ljO.jpg)
 
 ### Aim of this Course
 
