@@ -1,0 +1,1 @@
+To improve energy efficiency in IOT networks etc, D2D networks by allowing mobile devices to harvest from ambient radio frequency SWIPT has been used, but it has some drawbacks due to the ignorance of nonlinear behavior of RF harvesters/
