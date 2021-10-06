@@ -15,9 +15,7 @@
 
 It will be used to detect DSBSC.
 
-![image-20211001151434609](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151434609.png)
-
-
+![3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg?raw=true)
 
 
 
@@ -179,7 +177,7 @@ And r(t) is the output of the envelope detector
 
 As for envelope detector:
 
-![image-20211001151640401](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151640401.png)
+![envelope_detector.png](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/envelope_detector.png?raw=true)
 
 
 
@@ -234,7 +232,7 @@ f_{i}=\frac{d}{dt}(w_{c}t+c\int_{0}^{t}{f(\tau)}d\tau)=w_{c}+cf(t)
 $$
  Let's assume a FM receiver looks like this:
 
-![image-20211001151508624](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151508624.png)
+![FM_receiver.png](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/FM_receiver.png?raw=true)
 
  The signal after the demodulation is proportional  to the difference between **instantaneous frequency and carrier frequency.**
 
@@ -292,7 +290,7 @@ where we just assume that $n_{s}(t)<<\alpha$, $n_{s}(t)<<\alpha$(**quite importa
 
 
 
-And accordingly, the final output nosie:
+And accordingly, the corresponding instantaneous frequency will be $w_{c}+\frac{d(\gamma(t))}{dt}$the final output noise will be proportional to the **difference** between **instantaneous frequency and carrier frequency**
 $$
 n_{o}(t)=\frac{K}{\alpha}\frac{d}{dt}n_{s}(t)
 $$
