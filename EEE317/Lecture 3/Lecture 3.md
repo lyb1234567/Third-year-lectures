@@ -5,7 +5,13 @@ I=-log_{2}(p(m))\\
 H=\sum_{i=1}^{N}p(i)I=-\sum_{i=1}^{N}p(i)log_{2}(p(i))
 $$
 
+![Information Entropy.PNG](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%203/Information%20Entropy.PNG?raw=true)
 
+要记住的就是，当信息出现的概率越大，那么携带的信息量就越小。
+
+通常，一个信源发送出什么符号是不确定的，衡量它可以根据其出现的概率来度量。概率大，出现机会多，不确定性小；反之不确定性就大。
+
+总的来说，随机变量的信息熵越大，则它的值（内容）能给你补充的信息量越大，而知道这个值前你已有的信息量也就是所谓的（I（m））越小。
 
 ### Huffman coding and variable length codes
 
