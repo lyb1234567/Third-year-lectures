@@ -23,10 +23,10 @@ $$
       $$
       
 
-     3. De Moivre's theorem
-        $$
+          3. De Moivre's theorem
+      $$
         z^{n}=r^{n}(cosn\theta+isin\theta)
-        $$
+      $$
 
    4.nth root of a complex number
 
