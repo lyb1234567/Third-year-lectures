@@ -15,9 +15,7 @@
 
 It will be used to detect DSBSC.
 
-![image-20211001151434609](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151434609.png)
-
-
+![3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/3-s2.0-B9780128053454000093-f09-01-9780128053454.jpg?raw=true)
 
 
 
@@ -179,7 +177,7 @@ And r(t) is the output of the envelope detector
 
 As for envelope detector:
 
-![image-20211001151640401](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151640401.png)
+![envelope_detector.png](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/envelope_detector.png?raw=true)
 
 
 
@@ -234,13 +232,13 @@ f_{i}=\frac{d}{dt}(w_{c}t+c\int_{0}^{t}{f(\tau)}d\tau)=w_{c}+cf(t)
 $$
  Let's assume a FM receiver looks like this:
 
-![image-20211001151508624](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151508624.png)
+![FM_receiver.png](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/FM_receiver.png?raw=true)
 
  The signal after the demodulation is proportional  to the difference between **instantaneous frequency and carrier frequency.**
 
 Just a quick recall for FM demodulation
 
-![image-20211001151546483](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20211001151546483.png)
+![FM_demodulation.PNG](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/FM_demodulation.PNG?raw=true)
 
 Let's say the $y_{fM}$ is
 $$
@@ -269,7 +267,7 @@ $$
 =\alpha \cos(w_{t})+n_{c}(t)cos(w_{t}t)-n_{s}sin(w_{c}t)\\
 =r(t)cos(w_{c}t+\gamma(t))
 $$
-![image-20210929104249344](C:\Users\elc20yl\AppData\Roaming\Typora\typora-user-images\image-20210929104249344.png)
+![phasor_diagram.PNG](https://github.com/lyb1234567/Third-year-lectures/blob/master/EEE317/Lecture%201/phasor_diagram.PNG?raw=true)
 
 In this phasor diagram, either $n_{c}t$ or$\alpha$ has been multiplied by $w_{c}t$,  while $-sin\alpha=cos(\alpha-90^{o})$, so that's the reason why $n_{s}(t)$ is clockwise $90^{o}$ between  the cos term.
 
@@ -292,7 +290,7 @@ where we just assume that $n_{s}(t)<<\alpha$, $n_{s}(t)<<\alpha$(**quite importa
 
 
 
-And accordingly, the final output nosie:
+And accordingly, the corresponding instantaneous frequency will be $w_{c}+\frac{d(\gamma(t))}{dt}$the final output noise will be proportional to the **difference** between **instantaneous frequency and carrier frequency**
 $$
 n_{o}(t)=\frac{K}{\alpha}\frac{d}{dt}n_{s}(t)
 $$
@@ -306,11 +304,7 @@ $$
 S_{no}(w)=\frac{K^{2}w^{2}}{\alpha^{2}}\eta
 $$
 
-where $\eta$ it the white noise which has the same magnitude of  output frequency
-
-
-
-
+where $\eta$ it the white noise which has the same magnitude of  output frequency and the **white noise is independent of system frequency**
 
 Hence the noise output from the demodulator will increase with the square of the frequency deviation.
 
@@ -323,6 +317,20 @@ When increasing the frequency, the **output signal** will become **very weak.**
 #### Solution
 
 **Pre-emphasis filter** and  **De-emphasis filter** to set a certain frequency limit before the noise is introduced
+
+
+
+**Pre-Emphasis Circuit**
+
+![img](https://img.brainkart.com/imagebk14/LxUbCIa.jpg)
+
+![img](https://img.brainkart.com/imagebk14/chOWa9q.jpg)
+
+**De-Emphasis Circuit**:
+
+![img](https://img.brainkart.com/imagebk14/TSbwBw2.jpg)
+
+![img](https://img.brainkart.com/imagebk14/IhJ2ljO.jpg)
 
 ### Aim of this Course
 
