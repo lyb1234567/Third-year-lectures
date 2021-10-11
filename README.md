@@ -36,6 +36,7 @@ This is my third year lecture resources:
 #### Week3
 
 - [ ] Finish the schedule for PID
+- [ ] Finish course material of EEE348
 - [ ] Finish course material of EEE339
 - [ ] Review Mgt388 detaily
 - [ ] Try to write log every day
