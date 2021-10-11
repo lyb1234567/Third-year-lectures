@@ -31,3 +31,12 @@ This is my third year lecture resources:
 - [ ] Finish course material of MGT388
 - [x] Search for at least three third-year project related paper for Xiao li
 
+
+
+#### Week3
+
+- [ ] Finish the schedule for PID
+- [ ] Finish course material of EEE339
+- [ ] Review Mgt388 detaily
+- [ ] Try to write log every day
+- [ ] Try to memorize vocabulary everyday
