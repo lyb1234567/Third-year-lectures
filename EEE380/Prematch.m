@@ -6,7 +6,7 @@ EhaD=[];
 for i=D
     for k=C
         %\lamda ie
-        a=(Pth)./()
-
+        a=(Pth)./(Pmax*hiD+Pkc*hki+N0);
+        
 end
 
