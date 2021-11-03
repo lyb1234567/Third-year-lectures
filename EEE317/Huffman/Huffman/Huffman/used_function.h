@@ -9,6 +9,7 @@ using namespace std;
 bool comp(pair<char, int>& a, pair<char, int>& b);
 List test_list();
 void test_sort();
+void test_tree();
 #endif // !USED
 
 #pragma once

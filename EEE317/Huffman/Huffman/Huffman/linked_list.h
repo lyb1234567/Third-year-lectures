@@ -2,25 +2,8 @@
 #define LINKED_H_
 #include<string>
 #include<iostream>
+#include"Huffman.h"
 using namespace std;
-class Tree_node
-{
-public:
-	char data;
-	float prob;
-	Tree_node* left = NULL;
-	Tree_node* right = NULL;
-	Tree_node(char dt, float pb)
-	{
-		prob = pb;
-		data = dt;
-	}
-	Tree_node()
-	{
-		data = NULL;
-		prob = 0.0;
-	}
-};
 class Node
 {
 public:
@@ -28,12 +11,32 @@ public:
 	float prob;
 	Node* next = NULL;
 	Node* prev = NULL;
+	bool used = false;
 	Node(char dt, float pb)
 	{
 		prob = pb;
 		data = dt;
 	}
 	Node()
+	{
+		data = NULL;
+		prob = 0.0;
+	}
+};
+class Tree
+{
+public:
+	char data;
+	float prob;
+	Tree* head = NULL;
+	Node* left = NULL;
+	Node* right = NULL;
+	Tree(char dt, float pb)
+	{
+		prob = pb;
+		data = dt;
+	}
+	Tree()
 	{
 		data = NULL;
 		prob = 0.0;

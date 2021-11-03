@@ -25,7 +25,7 @@ int main()
 		temp = lst.get_head();
 		temp = temp->next;
 	}*/
-	test_sort();
+	test_tree();
 	return 0;
 
 }

@@ -237,7 +237,7 @@ void List::sort()
             index = temp->next;
             while (index)
             {
-                if (temp->prob > index->prob)
+                if (temp->prob<index->prob)
                 {
                     char a = temp->data;
                     float b = temp->prob;
