@@ -1,2 +1,7 @@
-﻿  main.cpp
+﻿  used_function.cpp
+\\studata10\home\EL\Elc20yl\ManW10\Desktop\ECE\Third-year-lectures\EEE317\Huffman\Huffman\Huffman\used_function.cpp(20,29): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
   Huffman.vcxproj -> \\studata10\home\EL\Elc20yl\ManW10\Desktop\ECE\Third-year-lectures\EEE317\Huffman\Huffman\Debug\Huffman.exe

@@ -8,6 +8,7 @@
 using namespace std;
 bool comp(pair<char, int>& a, pair<char, int>& b);
 List test_list();
+void test_sort();
 #endif // !USED
 
 #pragma once

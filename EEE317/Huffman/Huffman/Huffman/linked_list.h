@@ -60,6 +60,7 @@ public:
 	bool remove(char a);
 	Node* get_head() { return head; };
 	Node * find(int index);
+	void sort();
 	int len();
 };
 #endif

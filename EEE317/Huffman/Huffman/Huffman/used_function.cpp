@@ -22,3 +22,17 @@ List test_list()
 	lst.print_list();
 	return lst;
 }
+void test_sort()
+{
+	Node a('a', 1);
+	Node b('b', 2);
+	Node c('c', 3);
+	List lst;
+	lst.push_tail(b.data,b.prob);
+	lst.push_tail(a.data, a.prob);
+	lst.push_tail(c.data, c.prob);
+	lst.print_list();
+	cout << endl;
+	lst.sort();
+	lst.print_list();
+}

@@ -221,6 +221,38 @@ bool List::remove(int n)
 
 
 }
+void List::sort()
+{
+    Node* temp = head;
+    Node* index;
+    if (len() == 0)
+    {
+        cout << "The list is empty!";
+    }
+    else
+    {
+        //scan from the head
+        while (temp)
+        {
+            index = temp->next;
+            while (index)
+            {
+                if (temp->prob > index->prob)
+                {
+                    char a = temp->data;
+                    float b = temp->prob;
+                    temp->prob = index->prob;
+                    temp->data = index->data;
+                    index->prob = b;
+                    index->data = a;
+                    
+                }
+                index = index->next;
+            }
+            temp = temp->next;
+        }
+    }
+}
 Node *List::find(int n)
 {
     if (len() == 0)
