@@ -1,4 +1,4 @@
-#include<iostream>
+﻿#include<iostream>
 #include<map>
 #include <cassert>
 #include<vector>
@@ -25,7 +25,12 @@ int main()
 		temp = lst.get_head();
 		temp = temp->next;
 	}*/
-	test_tree();
+	float a, b, c;
+
+	printf("Please input a value a : ");
+	scanf("%f %f %f", &a,&b,&c);
+	printf("%f %f", a+b);
 	return 0;
+	return(0);
 
 }

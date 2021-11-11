@@ -1,7 +1,5 @@
-﻿  used_function.cpp
-C:\Users\admin\Desktop\lecture\Third-year-lectures\EEE317\Huffman\Huffman\Huffman\used_function.cpp(29,29): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
-          with
-          [
-              _Ty2=int
-          ]
+﻿  main.cpp
+C:\Users\admin\Desktop\lecture\Third-year-lectures\EEE317\Huffman\Huffman\Huffman\main.cpp(32,9): warning C4473: 'printf' : not enough arguments passed for format string
+C:\Users\admin\Desktop\lecture\Third-year-lectures\EEE317\Huffman\Huffman\Huffman\main.cpp(32,9): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+C:\Users\admin\Desktop\lecture\Third-year-lectures\EEE317\Huffman\Huffman\Huffman\main.cpp(32,9): message : the missing variadic argument 2 is required by format string '%f'
   Huffman.vcxproj -> C:\Users\admin\Desktop\lecture\Third-year-lectures\EEE317\Huffman\Huffman\Debug\Huffman.exe
