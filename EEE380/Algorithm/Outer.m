@@ -7,8 +7,8 @@ function [Pid_optimal,lambda_optimal,EE_optimal]=Outer(EhaD,SiD,lambda,P_ijD,EE_
 %segment and the j value at which Energy efficiecny reaches its maximum
 %value, then update the optimal value of J, transmission power PiD_optimal,
 %power plitting ratio lambda_optimal, and ofcourse the energy efficiency EE_optimal
-for i =EhaD
-    for k=SiD
+for i =1:size(Ehad,2)
+    for k=1:size(SiD,2)
         for j=1:Nmax
             [argvalue,argmax]=max(EE_ijD(i:j));
             j_optimal=argmax;

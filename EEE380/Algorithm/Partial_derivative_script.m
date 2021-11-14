@@ -35,7 +35,7 @@ optimal_lambda=max(optimal_lambda_matrix);
 %when power splitting ratio has been fixed, we can get the optimal
 %transmisson power from D2D links communication Pid, and in this case a
 %piecewise function will be used.
-syms m1 m2 m3 m4 m5 m6 b1 b2 b3 b4 h_iB e_ta h_kc XN YN g phi theta P1
+syms m1 m2 m3 m4 m5 m6 b1 b2 b3 b4 h_iB e_ta h_kc XN YN g phi theta P1 P_optimal
 n=[0 1 2];
 m1=(1+gamma)*h_id*log2(exp(1));
 m2=p_kc*h_ki+N0+((N1)/(1-lambda));
@@ -52,6 +52,6 @@ YN=(2*b2^3)/(27*b1^2)-((b2*b3)/(3*b1))+b4;
 g=2*b1*sqrt((b2*b2-3*b1*b3)/(9*b1*b1))^3;
 phi=(1/3)*acos(-YN/g);
 theta=sqrt((m2*m2-3*m1*m3)/(9*m1*m1));
-
 P1=piecewise(YN^2>g^2,XN+((-YN+sqrt(YN^2-g^2))/(2*a1))^(1/3),YN^2<g^2,XN+2*theta*cos(phi-n*(2*pi)/3),XN-theta | XN+2*theta);
+
 
