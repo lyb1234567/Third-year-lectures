@@ -43,7 +43,43 @@
 
 
 
-Implied term
+### Terms
 
-An implied term is **a term that hasn't been agreed expressly by either party**, but that has been implied by the other terms of the contract.
+- Express terms – contained in the offer (the other party selects to accept, reject, or vary the terms by way of a counter offer)
+
+- Implied terms – court *may* retrospectively imply terms into a contract
+
+  - Not simply to make contract ‘fair’ (impedes upon freedom of contract
+
+  - But will not imply a term if ‘unfair’ to do so
+
+    When
+
+    - Common practice in the geographical area or industry
+    - In light of consistent and repeated previous dealings
+    - 
+
+
+
+
+
+### Contract Negligence
+
+Professional negligence occurs where a professional fails to perform his responsibilities to the required standard. A claim may be based on one or more of the following:
+
+- Breach of a contractual term (express or implied)
+
+- Breach of duty of care owed in the tort of negligence
+
+- Breach of fiduciary duty
+
+- Breach of statutory duty
+
+  
+
+
+
+### Exclusion or Limitation clause
+
+Typically, an exclusion clause is **used to eliminate a party from any responsibility in the case of a breached contract**. An exclusion clause may be a full or partial exclusion. Regardless, it will protect that party from any responsibility regarding a specific event.
 
