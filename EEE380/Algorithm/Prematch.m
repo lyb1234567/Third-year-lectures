@@ -1,4 +1,4 @@
-function [SiD,InfD,EhaD] = Prematch(D,C,Pkc,Pth1,Pmax,TminD,distance_D2D)
+function [SiD,InfD,EhaD,h_D2D,h_C_D2D] = Prematch(D,C,Pkc,Pth1,Pmax,TminD,distance_D2D)
 syms rayleigh_ki rayleigh_i_D
 syms lambda_min T_max
 EhaD=[];
@@ -9,10 +9,15 @@ pass_loss=3;
 %N0 N1
 N0=1*10^(-13);
 N1=1*10^(-13);
+
+%Set hDi and hki
+h_D2D=[];
+h_C_D2D=[];
 for i=1:size(D,1)
     SiD{i,1}=C;
     count_delete=0;
     hD=exprnd(1)/(distance_D2D^(pass_loss));
+    h_D2D(i,1)=hD;
     for k=1:size(C,1)
         CUE_point=C(k,:);
         v1=D{i,1};
@@ -21,6 +26,7 @@ for i=1:size(D,1)
         hki=exprnd(1)/(dis_k_D2D^(pass_loss));
         lambda_min=(Pth1)/(Pmax*hD+Pkc*hki+N0);
         T_max=log2(1+(Pmax*hD)/(Pkc*hki+N0+(N1)/(1-lambda_min)));
+        h_C_D2D(i,k)=hki;
         if  lambda_min>1 || T_max<=TminD
             temp=SiD{i,1};
             temp(k,:)=[0 0];
