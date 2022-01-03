@@ -1,18 +1,18 @@
 %Parameter from Parameter table
 Pkc=0.1995262315;
-Pth1=10*10^(-6);
+Pth1=1*10^(-6);
 Pmax=0.1995262315;
 Tmin=2;
 
 %Noise
-N0=1*10^(-13);
-N1=1*10^(-13);
+% N0=1*10^(-13);
+% N1=1*10^(-13);
 
 %Generate the system model
-[D2D,CUE]=system_model(10,10,20);
+% [D2D,CUE]=system_model(20,20,20);
 % test_plot_model(D2D,CUE);
 %Prematching
-[Sid,InfD,EhaD,h_D2D,h_C_D2D]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
+% [Sid,InfD,EhaD,h_D2D,h_C_D2D]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,30);
 
 %Remove the CUE whose coordinate is (0,0), which means that it will not be
 %paired with corresponding D2D link i
