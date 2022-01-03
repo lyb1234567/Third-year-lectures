@@ -6,7 +6,7 @@ for i=1:number_D2D
     x=randperm(400,1)-200;
     y=randperm(400,1)-200;
     if isempty(D2D_TX_coord)
-        if x^(2)+y^(2)<=200^2 && (x~=0 && y~=0)
+        if x^(2)+y^(2)<=200^2 && (x~=0)
            D2D_TX_coord(i,1)=x;
            D2D_TX_coord(i,2)=y;
         else
@@ -18,7 +18,7 @@ for i=1:number_D2D
     else
         find=false;
         while find==false
-        if x^(2)+y^(2)<=200^2 && ~any(D2D_TX_coord(:,1)==x)
+        if x^(2)+y^(2)<=200^2 && ~any(D2D_TX_coord(:,1)==x)&& (x~=0)
         D2D_TX_coord(i,1)=x;
         D2D_TX_coord(i,2)=y;
         find=true;
@@ -33,11 +33,11 @@ for j=1:num_CUE
     x_C=randperm(400,1)-200;
     y_C=randperm(400,1)-200;
     if isempty(CUE_coord)
-        if x_C^(2)+y_C^(2)<=200^2
+        if x_C^(2)+y_C^(2)<=200^2 && (x_C~=0)
            CUE_coord(j,1)=x_C;
            CUE_coord(j,2)=y_C;
         else
-            while x_C^(2)+y_C^(2)>200^2||(x_C==0 && y_C==0)
+            while x_C^(2)+y_C^(2)>200^2
               x_C=randperm(400,1)-200;
               y_C=randperm(400,1)-200;  
             end
@@ -45,7 +45,7 @@ for j=1:num_CUE
     else
         find_C=false;
         while find_C==false
-        if x_C^(2)+y_C^(2)<=200^2 && ~any(CUE_coord(:,1)==x_C)&&~any(D2D_TX_coord(:,1)==x_C)&& x_C~=0 && y_C~=0
+        if x_C^(2)+y_C^(2)<=200^2 && ~any(CUE_coord(:,1)==x_C)&&~any(D2D_TX_coord(:,1)==x_C)&& (x_C~=0)
         CUE_coord(j,1)=x_C;
         CUE_coord(j,2)=y_C;
         find_C=true;
