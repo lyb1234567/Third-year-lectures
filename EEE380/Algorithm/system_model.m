@@ -5,26 +5,35 @@ RX_coord=[];
 for i=1:number_D2D
     x=randperm(400,1)-200;
     y=randperm(400,1)-200;
+    check1=x==0;
+    check2=y==0;
+    check=check1*check2;
     if isempty(D2D_TX_coord)
-        if x^(2)+y^(2)<=200^2 && (x~=0)
+        if x^(2)+y^(2)<=200^2 && check==0
            D2D_TX_coord(i,1)=x;
            D2D_TX_coord(i,2)=y;
         else
-            while x^(2)+y^(2)>200^2 
+            while x^(2)+y^(2)>200^2 ||check==1
               x=randperm(400,1)-200;
-              y=randperm(400,1)-200;  
+              y=randperm(400,1)-200; 
+              check1=x==0;
+              check2=y==0;
+              check=check1*check2;
             end
         end
-    else
+    elseif isempty(D2D_TX_coord)==0
         find=false;
         while find==false
-        if x^(2)+y^(2)<=200^2 && ~any(D2D_TX_coord(:,1)==x)&& (x~=0)
+        if x^(2)+y^(2)<=200^2 && ~any(D2D_TX_coord(:,1)==x)&& check==0
         D2D_TX_coord(i,1)=x;
         D2D_TX_coord(i,2)=y;
         find=true;
         else
          x=randperm(400,1)-200;
-         y=randperm(400,1)-200;     
+         y=randperm(400,1)-200;
+         check1=x==0;
+         check2=y==0;
+         check=check1*check2;
         end
         end
     end
@@ -32,27 +41,37 @@ end
 for j=1:num_CUE
     x_C=randperm(400,1)-200;
     y_C=randperm(400,1)-200;
+    check_x_C=x_C==0;
+    check_y_C=y_C==0;
+    check_C=check_x_C*check_y_C;
     if isempty(CUE_coord)
-        if x_C^(2)+y_C^(2)<=200^2 && (x_C~=0)
+        if x_C^(2)+y_C^(2)<=200^2 && check_C==0
            CUE_coord(j,1)=x_C;
            CUE_coord(j,2)=y_C;
         else
-            while x_C^(2)+y_C^(2)>200^2
+            while x_C^(2)+y_C^(2)>200^2 ||check_C==1
               x_C=randperm(400,1)-200;
-              y_C=randperm(400,1)-200;  
+              y_C=randperm(400,1)-200;
+              check_x_C=x_C==0;
+              check_y_C=y_C==0;
+              check_C=check_x_C*check_y_C;
             end
         end
     else
         find_C=false;
         while find_C==false
-        if x_C^(2)+y_C^(2)<=200^2 && ~any(CUE_coord(:,1)==x_C)&&~any(D2D_TX_coord(:,1)==x_C)&& (x_C~=0)
-        CUE_coord(j,1)=x_C;
-        CUE_coord(j,2)=y_C;
-        find_C=true;
-        else
-         x_C=randperm(400,1)-200;
-         y_C=randperm(400,1)-200;     
-        end
+            if x_C^(2)+y_C^(2)<=200^2 && ~any(CUE_coord(:,1)==x_C)&&~any(D2D_TX_coord(:,1)==x_C)&& check_C==0
+                CUE_coord(j,1)=x_C;
+                CUE_coord(j,2)=y_C;
+                find_C=true;
+                break;
+            else
+                x_C=randperm(400,1)-200;
+                y_C=randperm(400,1)-200;
+                check_x_C=x_C==0;
+                check_y_C=y_C==0;
+                check_C=check_x_C*check_y_C;
+            end
         end
     end
 end
