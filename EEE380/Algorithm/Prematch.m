@@ -19,6 +19,12 @@ h_CUE=[];
 %initialize BS
 BS=[0 0];
 
+for k=1:size(C,1)
+        CUE_point=C(k,:);
+        dis_k_BS=hypot(CUE_point(1),CUE_point(2));
+        hkc=exprnd(1)/(dis_k_BS^(pass_loss));
+        h_CUE(k,1)=hkc;
+end
 for i=1:size(D,1)
     SiD{i,1}=C;
     count_delete=0;
@@ -35,10 +41,6 @@ for i=1:size(D,1)
         v2=D{i,2};
         dis_k_D2D=point_to_line(v1,v2,CUE_point);
         hki=exprnd(1)/(dis_k_D2D^(pass_loss));
-        
-        dis_k_BS=hypot(CUE_point(1),CUE_point(2));
-        hkc=exprnd(1)/(dis_k_BS^(pass_loss));
-        h_CUE(k,1)=hkc;
         lambda_min=(Pth1)/(Pmax*hD+Pkc*hki+N0);
         T_max=log2(1+(Pmax*hD)/(Pkc*hki+N0+(N1)/(1-lambda_min)));
         h_C_D2D(i,k)=hki;

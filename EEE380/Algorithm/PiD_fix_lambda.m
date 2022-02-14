@@ -1,5 +1,6 @@
 function PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD,hki,hkc,hiB,kj,QiD)
 syms eta
+eta=0.5;
 Pkc=0.1995262315;
 N0=1*10^(-13);
 N1=1*10^(-13);
