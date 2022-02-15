@@ -1,4 +1,4 @@
-function hki_clean=clean_hki(h_C_D2D,Sid,CUE)
+function hki_clean=clean_hki(h_C_D2D,Sid,CUE,EhaD)
 hki_clean={};
 for i=1:size(Sid,1)
     temp={};
@@ -12,5 +12,8 @@ for i=1:size(Sid,1)
     a=temp;
     a_clean=a(~cellfun('isempty',a));
     hki_clean{i,1}=a_clean;
+end
+for i=1:size(EhaD,2)
+    hki_clean{i,2}=num2str(EhaD(1,i));
 end
 end
