@@ -39,4 +39,5 @@ legend('System','BS','D2D_TX','D2D_RX','CUE');
 title('Single cellular network')
 xlabel('Location in x(m)')
 ylabel('Location in y(m)')
+set(gca,'FontSize',15,'FontWeight','Bold')
 end

@@ -21,7 +21,8 @@ N1=1*10^(-13);
 
 % TELLA
 [D2D,CUE]=system_model(20,20,20);
-[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
-Sid=clean_Sid(Sid);
-hki=clean_hki(hki,Sid,CUE);
-inner(D2D,CUE,EhaD,Sid,3,0.1,hiD,hki,hiB,hkc);
+plot_model(D2D,CUE);
+% [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
+% Sid=clean_Sid(Sid);
+% hki=clean_hki(hki,Sid,CUE);
+% inner(D2D,CUE,EhaD,Sid,3,0.1,hiD,hki,hiB,hkc);
