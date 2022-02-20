@@ -1,82 +1,92 @@
-[D2D,CUE]=system_model(20,20,30);
+
+Pmax=0.2;
 Pkc=0.1995262315;
-Pth1=1*10^(-6);
-Pmax=0.1995262315;
-Tmin=2;
-[Sid,InfD,EhaD]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,50);
-for i=1:size(Sid,1)
-    temp=Sid{i,1};
-    index=[];
-    for k=1:size(temp,1)
-        if temp(k,1)==0 && temp(k,2)==0
-            index(end+1)=k;
-        end
-    end
-    temp(index,:)=[];
-    Sid{i,1}=temp;
-end
-Sid_temp=Sid;
-% %去除所有0的部分
-Sid=Sid(~cellfun('isempty',Sid));
-for i=1:size(EhaD,2)
-    Sid{i,2}=int2str(EhaD(i));
-end
-% 
-% 
-% 
-EE={};
-%模拟完成算法2和算法3之后，每一个D2D link i 对应一个 CUE k 都应该有自己的一个EE
-for i=1:size(EhaD,2)
-    temp=[];
-    EE{i,1}=int2str(EhaD(i));
-    for k=1:size(Sid{i,1},1)
-         temp(k)=rand(1,1)*40+10;
-    end
-    EE{i,2}=temp;
-end
+ hkc=2.707*10^(-6);
+ hki=3.7429*10^(-7);
+ hiD=1.1527*10^(-4);
+ hiB=4.9154*10^(-7);
+ k=0.6967;
+ b=-19.1737*10^(-6);
+ 
+ Pth=[10 100 230.06 57368]*10^(-6);
+ Tmin_D=2;
+Tmin_C=1;
+ phi=0;
+ s=1*10^(-5);
+ PiD_initial=random(0,0.2);
+ Q_=[];
+%  for i=1:2
+%      Pmax=P(i);
+sum_EE=[];
+% for p=1:2
+iteration=[];
+EE_array=[];
+temp=[];
+% Pmax=P(p);
+QiD=10;
+ alpha=random(0,1);
+ beta=random(0,1);
+ gamma=random(0,1);
+ delta=random(0,1);
+ in=random(0,1);
 
-% 同理，每一个CUE k 对应一个D2D link i, 也应该有对应的interfernce power
-P_interference={};
-for k=1:size(Sid,1)
-    temp=[];
-   for j=1:size(Sid{k,1},1)
-       for i=1:size(EhaD,2)
-           temp(j,i)=rand(1,1);
-       end
-   end
-   P_interference{k,1}=temp;
-end
+ I=1;
+ Q=[];
+ t=1;
+ lambda=lambda_fix_PiD(PiD_initial,alpha,beta,gamma,delta,in,hiD,hki,k,QiD);
+ P=[0.1 0.1995262315];
+ QiD=random(0,10);
+I=1;
+ while t<=I
+     PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD,hki,hkc,hiB,k,QiD);
+     lambda=lambda_fix_PiD(PiD,alpha,beta,gamma,delta,in,hiD,hki,k,QiD);
+     T_D=Throughput_D(lambda,PiD,hiD,hki);
+     T_C=Throughput_C(hkc,hiB,PiD);
+     PiR=received_power(lambda, PiD,hiD,hki);
+     [EH,j]=EH_model(PiR);
+     EC=Energy_Consumption(PiD,EH);
+     Q(t)=QiD;
+     T_D-QiD*EC
+     if T_D-QiD*EC>=phi
+          QiD=T_D/EC;
+          alpha_=alpha+s*(PiD-Pmax);
+          alpha=max([0 alpha_]);
+          
+          beta_=beta+s*(lambda-1);
+          beta=max([0 beta_]);
+          
+          gamma_=gamma-s*(T_D-Tmin_D);
+          gamma=max([0 gamma_]);
+          
+          delta_=delta-s*(T_C-Tmin_C);
+          delta=max([0 delta_]);
+          
+          in_=in-s*(PiR-Pth(1));
+          in=max([0 in_]);
+          continue;
+     else
+         PiD_new=PiD;
+         lambda_new=lambda;
+         EE=QiD;
+         Q(t)=QiD;
+     end 
+     t=t+1;
+ end
 
-%接下来就是建立preference list,每一个D2D link i 的preference list 中CUE k 根据 EE 从高到低进行排序
-%每一个CUE k的 preference list 中D2D link i 根据 interfernce power 从低到高进行排序
-Preference_D2D={};
-for i=1:size(EhaD,2)
-   Preference_D2D{i,1}=int2str(EhaD(i));
-   temp=EE{i,2};
-   temp_sort=sort(temp,'descend');
-   Preference_list=[];
-   for j=1:size(temp,2)
-       Preference_list(j)=find(temp==temp_sort(j));
-   end
-   Preference_D2D{i,2}=Preference_list;
-end
+% sum_EE(p,:)=sum(temp);
+% end
+% sum_EE=sum_EE./10;
+% iteration=[];
+% for i=1:I
+%     iteration(end+1)=i;
+% end
+% plot(iteration,sum_EE(1,:),'--');
+% hold on
+% plot(iteration,sum_EE(2,:),'-');
+% plot(iteration,EE_array,'-');
+% title('Convergence of inner loop Algorithm');
+% xlabel('interation step')
+% ylabel('Energy Efficiency [bits/Hz/J]');
+% legend('Pmax=20dBm','Pmax=23dBm');
 
-%建立 每一条 SWIPT-Supported D2D link i 上对应的每一个k的 preference list
-Preference_CUE={};
-for i=1:size(P_interference,1)
-    Preference={};
-    Preference_CUE{i,1}=int2str(EhaD(i));
-    for k=1:size(P_interference{i,1},1)
-        A=P_interference{i,1};
-        temp=A(k,:);
-        temp_sort=sort(temp,'ascend');
-        Preference_list=[];
-        for j=1:size(temp,2)
-            Preference_list(j)=find(temp==temp_sort(j));
-        end
-        Preference{k,1}=Preference_list;
-    end
-    Preference_CUE{i,2}=Preference;
-end
-
-
+ 

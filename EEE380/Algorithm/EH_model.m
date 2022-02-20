@@ -20,7 +20,7 @@ if j==0
     EH=0;
 end
 if j>=1 && j<=size(Pth,2)-1
-    EH=PiR*k(j)+b(j);
+    EH=PiR*k(j+1)+b(j+1);
 end
 if j>=size(Pth,2)-1 && j<=size(Pth,2)
     EH=P_EH_max;
