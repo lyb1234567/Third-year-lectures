@@ -34,8 +34,6 @@ for i=1:size(EhaD,2)
         for j=1:Nmax
             t=1;
             PiD_iteration=[];
-            QiD_iteration=[];
-            lambda_iteration=[];
             %initialize PiD(0)
             PiD_iteration(t)=random(0,0.2);
             

@@ -9,7 +9,7 @@ Pkc=0.1995262315;
  
  Pth=[10 100 230.06 57368]*10^(-6);
  Tmin_D=2;
-Tmin_C=1;
+ Tmin_C=1;
  phi=0;
  s=1*10^(-5);
  PiD_initial=random(0,0.2);
@@ -17,7 +17,7 @@ EE_array=[];
 QiD=10;
  P=[0.1 0.1995262315];
 I=10;
-number=1000;
+number=100;
 
 for i=1:2
 Pmax=P(i);
