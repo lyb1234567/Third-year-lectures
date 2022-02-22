@@ -28,17 +28,14 @@ PiD_array={};
 lambda_array={};
 EE_array={};
 
-PiD_final={};
-PiD_final={};
-EE_final={};
 for i=1:size(EhaD,2)
-    i
     hiD=hiD(EhaD(i));
     hiB=hiB(EhaD(i));
     partner=Sid{i,1};
-    hki_sub=hki{i,1};
+    hki=hki{i,1};
 for q=1:size(partner,1)
-    PiR_max=Pmax*hiD+Pkc*hki_sub{1,q}+N0;
+    hkc=hkc{}
+    PiR_max=Pmax*hiD+Pkc*hki{1,q}+N0;
     [EH,Nmax]=EH_model(PiR_max);
     PiD_sub=[];
     lambda_sub=[];
@@ -54,13 +51,13 @@ for q=1:size(partner,1)
         in=random(0,1);
         t=1;
         I=10;
-        lambda=lambda_fix_PiD(PiD_initial,alpha,beta,gamma,delta,in,hiD,hki_sub{1,q},k(j),QiD);
+        lambda=lambda_fix_PiD(PiD_initial,alpha,beta,gamma,delta,in,hiD,hki{1,q},k(j),QiD);
         while t<=I
-            PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD,hki_sub{1,q},hkc(location),hiB,k(j),QiD);
-            lambda=lambda_fix_PiD(PiD,alpha,beta,gamma,delta,in,hiD,hki_sub{1,q},k(j),QiD);
-            T_D=Throughput_D(lambda,PiD,hiD,hki_sub{1,q});
+            PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD,hki{1,q},hkc(location),hiB,k(j),QiD);
+            lambda=lambda_fix_PiD(PiD,alpha,beta,gamma,delta,in,hiD,hki{1,q},k(j),QiD);
+            T_D=Throughput_D(lambda,PiD,hiD,hki{1,q});
             T_C=Throughput_C(hkc(location),hiB,PiD);
-            PiR=received_power(lambda, PiD,hiD,hki_sub{1,q});
+            PiR=received_power(lambda, PiD,hiD,hki{1,q});
             [EH,n]=EH_model(PiR);
             EC=Energy_Consumption(PiD,EH);
             if T_D-QiD*EC>phi
@@ -92,7 +89,4 @@ for q=1:size(partner,1)
     lambda_array{1,q}=lambda_sub;
     EE_array{1,q}=EE_sub;
 end
-PiD_final{i,1}= PiD_array;
-lambda_final{i,1}=lambda_array;
-EE_final{i,1}=EE_array;
 end
