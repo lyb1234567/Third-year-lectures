@@ -1,6 +1,6 @@
 function PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD,hki,hkc,hiB,kj,QiD)
 syms eta
-eta=0.5;
+eta=0.7;
 Pkc=0.1995262315;
 N0=1*10^(-13);
 N1=1*10^(-13);
@@ -32,6 +32,7 @@ if test>0
 elseif test<=0
     theta=-sqrt((b2^(2)-3*b1*b3)/(9*b1^(2)));
 end
+
 if yN^(2)>g^(2)
     A=sqrt(yN^(2)-g^(2));
     B=-yN;

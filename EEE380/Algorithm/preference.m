@@ -1,0 +1,29 @@
+function D_preference=preference(EE,EhaD)
+    D_preference={};
+    for i=1:size(EhaD,2)
+      preference_EE_value=[];
+      preference_EE_index=[];
+      EE_sub=EE{i,1};
+      temp=[];
+      temp_sub=[];
+      for k=1:size(EE_sub,2)
+          temp(end+1)=EE_sub{1,k};
+          temp_sub(end+1)=EE_sub{1,k};
+      end
+      while size(temp,2)>0
+           [argvalue, argmax] = max(temp);
+           preference_EE_value(end+1)=argvalue;
+           if argvalue>0
+           preference_EE_index(end+1)=find(temp_sub==argvalue);
+           temp(temp==argvalue)=[];
+           else
+              preference_EE_index=[preference_EE_index find(temp_sub==argvalue)];
+              temp=[];
+           end
+      end
+      D_preference{i,1}=preference_EE_value;
+     D_preference{i,2}=preference_EE_index;
+    end
+     
+end
+

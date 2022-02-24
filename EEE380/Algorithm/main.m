@@ -27,6 +27,10 @@ xlabel('D2D from EnaD');
 ylabel('Number of partners for each D2D link ');
 %clean the power gain of CUE k and D2D link i
 hki=clean_hki(hki,Sid,CUE,EhaD);
-% I=10;
-% phi=0;
-% [lambda,PiD,EE]=inner(D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc);
+I=10;
+phi=0;
+[lambda,PiD,EE]=inner(D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc);
+[lambda_optimal,PiD_optimal,EE_optimal]=outer(lambda,PiD,EE,hiD,hki,EhaD,Sid);
+D_preference=preference(EE_optimal,EhaD);
+
+
