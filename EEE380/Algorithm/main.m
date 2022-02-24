@@ -31,6 +31,6 @@ I=10;
 phi=0;
 [lambda,PiD,EE]=inner(D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc);
 [lambda_optimal,PiD_optimal,EE_optimal]=outer(lambda,PiD,EE,hiD,hki,EhaD,Sid);
-D_preference=preference(EE_optimal,EhaD);
+D_preference=preference_D2D(EE_optimal,EhaD);
 
 

@@ -1,4 +1,4 @@
-function D_preference=preference(EE,EhaD)
+function D_preference=preference_D2D(EE,EhaD)
     D_preference={};
     for i=1:size(EhaD,2)
       preference_EE_value=[];
