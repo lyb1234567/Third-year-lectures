@@ -14,8 +14,12 @@ function D_preference=preference_D2D(EE,EhaD)
            [argvalue, argmax] = max(temp);
            preference_EE_value(end+1)=argvalue;
            if argvalue>0
-           preference_EE_index(end+1)=find(temp_sub==argvalue);
-           temp(temp==argvalue)=[];
+            if size(find(temp_sub==argvalue),2)>1
+                preference_EE_index=[preference_EE_index find(temp_sub==argvalue)];
+            else
+                preference_EE_index(end+1)=find(temp_sub==argvalue);
+            end
+            temp(temp==argvalue)=[];
            else
               preference_EE_index=[preference_EE_index find(temp_sub==argvalue)];
               temp=[];
