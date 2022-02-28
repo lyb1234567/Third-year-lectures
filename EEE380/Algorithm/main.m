@@ -33,5 +33,5 @@ phi=0;
 [lambda_optimal,PiD_optimal,EE_optimal]=outer(lambda,PiD,EE,hiD,hki,EhaD,Sid);
 D_preference=preference_D2D(EE_optimal,EhaD);
 [C_preference]=preference_CUE(hiB,PiD_optimal,EhaD,CUE,Sid);
-final_partner=stable(EhaD,Sid,D_preference,C_preference);
+final_partner=stable(CUE,EhaD,Sid,D_preference,C_preference);
 
