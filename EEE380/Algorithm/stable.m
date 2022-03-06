@@ -1,63 +1,99 @@
 function [matched_partner]=stable(CUE,EhaD,Sid,D2D_preference,CUE_preference)
 
-mateched_partner=containers.Map('KeyType','int32','ValueType','int32');
-unmatched_D2D=[];
-proposal=containers.Map('KeyType','int32','ValueType','any');
-for k=1:size(CUE_preference,1)
-    proposal(k)=[];
-end
-remove_D2D=[];
+matched_partner=containers.Map('KeyType','int32','ValueType','int32');
 EhaD_sub=EhaD;
-number_zeros=size(find(EhaD==0),2);
-while number_zeros<size(EhaD,2)
-    EhaD=EhaD(EhaD~=0);
-    for i=1:size(EhaD,2)
-        preference=D2D_preference{i,2};
-        most_preferred=preference(1,1);
-        partner=Sid{i,1};
-        most_preferred_coordinate=partner(most_preferred,:);
-        most_preferred_location=location_CUE(CUE,most_preferred_coordinate);
-        a=proposal(most_preferred_location);
-        a(end+1)=EhaD(i);
-        proposal(most_preferred_location)=a;
-        for k=1:size(partner,1)
-            CUE_coordinate=partner(k,:);
-            CUE_location=location_CUE(CUE,CUE_coordinate);
-            proposal_k=proposal(CUE_location);
-            %检查得到的proposal 矩阵里面是否有EhaD(i)
-            check=any(proposal_k==EhaD(i));
-            if check
-                if size(proposal_k,2)==1
-                    matched_partner(EhaD(i))=CUE_location;
-                    EhaD(EhaD==EhaD(i))=0;
-                elseif size(proposal_k,2)>1
-                    find_match=false;
-                    for n=1:size(proposal_k,2)
-                        %假如说总共收到不止一个D2D link 的proposal,那么我们就需要检查这其中是否有D2D
-                        %link只有1一个proposal要发出,for eaxample: proposal_k=[3 7 10]
-                        %then we need to scan it to check if 3 , 7 and 10
-                        %if one of them has only one preference
-                        index=find_EhaD_location(proposal_k(1,n),EhaD);
-                        D2D_preference_n=D2D_preference{index,2};
-                        if size(D2D_preference_n,2)==1
-                            find_match=true;
-                            matched_partner(proposal_k(1,n))=CUE_location;
-                            EhaD(EhaD==proposal_k(1,n))=0;
-                            break;
-                        end
-                    end
-                    if find_match==false
-                         CUE_preference_sub=CUE_preference{CUE_location,2};
-                         more_preferred_index=CUE_more_preferred(CUE_preference_sub,proposal_k);
-                         more_preferred=CUE_preference_sub(1,more_preferred_index);
-                         EhaD(EhaD==more_preferred)=0;
-                    end
-                end
-            end
-        end
-    end
-    number_zeros=size(find(EhaD==0),2);
-    new_D2D_preference=delete_most_preferred(D2D_preference);
-    D2D_preference=new_D2D_preference;
+while size(EhaD,2)>0
+   EhaD
+   most_preferred=show_most_preferred(D2D_preference)
+   new_most_preferred=clean_most_preferred(most_preferred,EhaD,EhaD_sub)
+   proposal=match_most_preferred(new_most_preferred,EhaD,EhaD_sub,CUE,Sid);
+   %先将proposal 中只收到一个EhaD的proposal 匹配完
+   for i=1:size(EhaD,2)
+       link=EhaD(i);
+       if link==0
+           continue;
+       end
+       link_location=find_EhaD_location(link,EhaD);
+       preference_i=D2D_preference{link_location,2};
+       partner_selection_i=Sid{link_location,1};
+       most_preferred_i=preference_i(1);
+       most_preferred_i_coord=partner_selection_i(most_preferred_i,:);
+       most_preferred_i_location=location_CUE(CUE,most_preferred_i_coord);
+       proposal_most_preferred_i=proposal(most_preferred_i_location);
+       if size(proposal_most_preferred_i,2)>1
+           continue;
+       elseif size(proposal_most_preferred_i,2)==1
+           matched_partner(link_location)=most_preferred_i_location;
+           EhaD(i)=0;
+       end
+   end
+   keys(matched_partner)
+   new_EhaD=EhaD(EhaD~=0)
+   unmatched_EhaD_index=[];
+   for j=1:size(new_EhaD,2)
+       link=new_EhaD(j);
+       if link==0
+           continue;
+       end
+       location_EhaD_j=find_EhaD_location(link,EhaD);
+       preference_j=D2D_preference{location_EhaD_j,2};
+       partner_selection_j=Sid{location_EhaD_j,1};
+       most_preferred_j=preference_j(1);
+       most_preferred_j_coord=partner_selection_j(most_preferred_j,:);
+       most_preferred_j_location=location_CUE(CUE,most_preferred_j_coord);
+       proposal_most_preferred_j=proposal(most_preferred_j_location);
+       if size(proposal_most_preferred_j,2)==1
+           continue;
+       elseif size(proposal_most_preferred_j,2)>1
+           find_match=false;
+           for n=1:size(proposal_most_preferred_j)
+               preference_n=D2D_preference{proposal_most_preferred_j(n),2};
+               if size(preference_n,2)==1
+                   matched_partner(proposal_most_preferred_j(n))=most_preferred_j_location;
+                   new_EhaD(new_EhaD==EhaD_sub(proposal_most_preferred_j(n)))=0;
+                   find_match=true;
+                   proposal_most_preferred_j(n)=0;
+               end
+           end
+           if find_match==true
+               if size(proposal_most_preferred_j(proposal_most_preferred_j~=0),2)==0
+                   continue;
+               else
+                   append_1=proposal_most_preferred_j(proposal_most_preferred_j~=0);
+                   for u=1:size(append_1,2)
+                       append_location=find_EhaD_location(EhaD_sub(append_1(u)),new_EhaD);
+                       h=new_EhaD(append_location);
+                       new_EhaD(new_EhaD==h)=0;
+                   end
+                   unmatched_EhaD_index=[unmatched_EhaD_index append_1];
+                   continue;
+               end
+           else
+               CUE_preference_sub=CUE_preference{most_preferred_j_location,2};
+               index_more_preferred=CUE_more_preferred(CUE_preference_sub,proposal_most_preferred_j);
+               if size(index_more_preferred,2)>0
+                   proposal_most_preferred_j
+                   chosen_preference=CUE_preference_sub(index_more_preferred);
+                   matched_partner(chosen_preference)=most_preferred_j_location;
+                   new_EhaD(new_EhaD==EhaD_sub(chosen_preference))=0;
+                   proposal_most_preferred_j(proposal_most_preferred_j==chosen_preference)=0;
+                   append_2=proposal_most_preferred_j(proposal_most_preferred_j~=0);
+                   for u=1:size(append_2,2)
+                       append_location=find_EhaD_location(EhaD_sub(append_2(u)),new_EhaD);
+                       h=new_EhaD(append_location);
+                       new_EhaD(new_EhaD==h)=0;
+                   end
+                   unmatched_EhaD_index=[unmatched_EhaD_index append_2];
+                   continue;
+               else
+                   continue;
+               end 
+           end
+       end
+   end
+   keys(matched_partner)
+   EhaD=EhaD(unmatched_EhaD_index);
+   new_D2D_preference=delete_most_preferred(D2D_preference);
+   D2D_preference=new_D2D_preference;
 end
 end

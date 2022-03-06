@@ -27,6 +27,7 @@ yN=((2*b2^(3))/(27*b1^(2)))-((b2*b3)/(3*b1))+b4;
 g=2*b1*(sqrt((b2^(2)-3*b1*b3)/(9*b1^(2))))^(3);
 phi=(1/3)*acos(-yN/g);
 test=(yN/(2*b1))^(1/3);
+theta=0;
 if test>0
     theta=sqrt((b2^(2)-3*b1*b3)/(9*b1^(2)));
 elseif test<=0

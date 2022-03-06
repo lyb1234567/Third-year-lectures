@@ -7,7 +7,7 @@ for k=1:size(CUE,1)
     for i=1:size(EhaD,2)
         Sid_sub=Sid{i,1};
         PiD_sub=PiD{i,1};
-        hiB_sub=hiB(i);
+        hiB_sub=hiB(EhaD(i));
         index=Sid_location(Sid_sub,CUE_coordinate);
         if index==-1
             temp{1,i}=[];

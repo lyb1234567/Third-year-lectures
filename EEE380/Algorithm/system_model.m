@@ -3,13 +3,11 @@ D2D_TX_coord=[];
 CUE_coord=[];
 RX_coord=[];
 for i=1:number_D2D
-    D2D_TX_coord
     x=randperm(400,1)-200;
     y=randperm(400,1)-200;
     check1=x==0;
     check2=y==0;
     check=check1*check2;
-    isempty(D2D_TX_coord)
     if isempty(D2D_TX_coord)
         if x^(2)+y^(2)<=200^2 && check==0
            D2D_TX_coord(i,1)=x;

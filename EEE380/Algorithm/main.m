@@ -32,6 +32,7 @@ phi=0;
 [lambda,PiD,EE]=inner(D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc);
 [lambda_optimal,PiD_optimal,EE_optimal]=outer(lambda,PiD,EE,hiD,hki,EhaD,Sid);
 D_preference=preference_D2D(EE_optimal,EhaD);
-[C_preference]=preference_CUE(hiB,PiD_optimal,EhaD,CUE,Sid);
+[C_preference,original]=preference_CUE(hiB,PiD_optimal,EhaD,CUE,Sid);
 final_partner=stable(CUE,EhaD,Sid,D_preference,C_preference);
-
+% EE_link=final_EE(EhaD,final_partner,EE_optimal,CUE,Sid);
+% sum_EE=sum(EE_link);
