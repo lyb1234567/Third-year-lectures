@@ -1,12 +1,12 @@
 function EE=final_EE(EhaD,partner,EE_cell,CUE,Sid)
 EE=[];
 for i=1:size(EhaD,2)
-    partner_sub=partner(EhaD(i));
-    partner_coordinate=CUE(partner_sub,:);
+    CUE_location=partner(i);
+    CUE_coord=CUE(CUE_location,:);
     Sid_sub=Sid{i,1};
-    Sid_index=Sid_location(Sid_sub, partner_coordinate)
+    locatin_Sid=Sid_location(Sid_sub,CUE_coord);
     EE_sub=EE_cell{i,1};
-    EE_sub_value=EE_sub(Sid_index);
-    EE(end+1)=EE_sub_value{1};
+    EE_link=EE_sub{1,locatin_Sid};
+    EE(end+1)=EE_link;
 end
 end

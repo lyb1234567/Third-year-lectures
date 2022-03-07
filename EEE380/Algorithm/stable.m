@@ -1,11 +1,10 @@
-function [matched_partner]=stable(CUE,EhaD,Sid,D2D_preference,CUE_preference)
+function [matched_partner,unmatched_CUE]=stable(CUE,EhaD,Sid,D2D_preference,CUE_preference)
 
 matched_partner=containers.Map('KeyType','int32','ValueType','int32');
 EhaD_sub=EhaD;
 while size(EhaD,2)>0
-   EhaD
-   most_preferred=show_most_preferred(D2D_preference)
-   new_most_preferred=clean_most_preferred(most_preferred,EhaD,EhaD_sub)
+   most_preferred=show_most_preferred(D2D_preference);
+   new_most_preferred=clean_most_preferred(most_preferred,EhaD,EhaD_sub);
    proposal=match_most_preferred(new_most_preferred,EhaD,EhaD_sub,CUE,Sid);
    %先将proposal 中只收到一个EhaD的proposal 匹配完
    for i=1:size(EhaD,2)
@@ -13,7 +12,7 @@ while size(EhaD,2)>0
        if link==0
            continue;
        end
-       link_location=find_EhaD_location(link,EhaD);
+       link_location=find_EhaD_location(link,EhaD_sub);
        preference_i=D2D_preference{link_location,2};
        partner_selection_i=Sid{link_location,1};
        most_preferred_i=preference_i(1);
@@ -27,15 +26,14 @@ while size(EhaD,2)>0
            EhaD(i)=0;
        end
    end
-   keys(matched_partner)
-   new_EhaD=EhaD(EhaD~=0)
+   new_EhaD=EhaD(EhaD~=0);
    unmatched_EhaD_index=[];
    for j=1:size(new_EhaD,2)
        link=new_EhaD(j);
        if link==0
            continue;
        end
-       location_EhaD_j=find_EhaD_location(link,EhaD);
+       location_EhaD_j=find_EhaD_location(link,EhaD_sub);
        preference_j=D2D_preference{location_EhaD_j,2};
        partner_selection_j=Sid{location_EhaD_j,1};
        most_preferred_j=preference_j(1);
@@ -72,7 +70,6 @@ while size(EhaD,2)>0
                CUE_preference_sub=CUE_preference{most_preferred_j_location,2};
                index_more_preferred=CUE_more_preferred(CUE_preference_sub,proposal_most_preferred_j);
                if size(index_more_preferred,2)>0
-                   proposal_most_preferred_j
                    chosen_preference=CUE_preference_sub(index_more_preferred);
                    matched_partner(chosen_preference)=most_preferred_j_location;
                    new_EhaD(new_EhaD==EhaD_sub(chosen_preference))=0;
@@ -91,9 +88,21 @@ while size(EhaD,2)>0
            end
        end
    end
-   keys(matched_partner)
-   EhaD=EhaD(unmatched_EhaD_index);
+   EhaD=EhaD_sub(unmatched_EhaD_index);
    new_D2D_preference=delete_most_preferred(D2D_preference);
    D2D_preference=new_D2D_preference;
+end
+
+%find all the CUE in the partner
+matched_CUE=[];
+for i=1:size(EhaD_sub,2)
+    matched_CUE(end+1)=matched_partner(i);
+end
+matched_CUE=unique(matched_CUE);
+unmatched_CUE=[];
+for k=1:size(CUE,1)
+    if ~any(k==matched_CUE)
+        unmatched_CUE(end+1)=k;
+    end
 end
 end

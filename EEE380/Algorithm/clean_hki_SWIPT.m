@@ -1,4 +1,4 @@
-function hki_clean=clean_hki(h_C_D2D,Sid,CUE,EhaD)
+function hki_clean=clean_hki_SWIPT(h_C_D2D,Sid,CUE,EhaD)
 hki_clean={};
 for i=1:size(Sid,1)
     temp={};

@@ -1,4 +1,4 @@
-function [lambda_final,PiD_final,EE_final]=inner(D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc)
+function [lambda_final,PiD_final,EE_final]=inner_SWIPT(Pkc,D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc)
 
 %parameter initialization
 b=[0 -1.6613 -19.1737 108.2778]*10^(-6);
@@ -6,7 +6,6 @@ k=[ 0 0.3899 0.6967 0.1427];
 N0=1*10^(-13);
 N1=1*10^(-13);
 Pmax=0.1995262315;
-Pkc=0.1995262315;
 Pth1=10*10^(-6);
 Tmin_D=2;
 Tmin_C=1;
