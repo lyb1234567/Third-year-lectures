@@ -1,20 +1,23 @@
 %Parameter from Parameter table
 Pkc=0.1995262315;
+final_sum=[];
+number_CUE_D2D=[10 20 30 40 50];
+for j=1:size(number_CUE_D2D,2)
+number_sub=number_CUE_D2D(j);
 sum_EE=[];
 Pth1=10*10^(-6);
 Pmax=0.1995262315;
 Tmin=2;
-
 %Noise
 N0=1*10^(-13);
 N1=1*10^(-13);
 % Using Pre-Matching 
-[D2D,CUE]=system_model(50,50,20);
+[D2D,CUE]=system_model(number_sub,number_sub,15);
 plot_model(D2D,CUE);
 % [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
 % Sid=clean_Sid(Sid);
 % hki=clean_hki(hki,Sid,CUE);
-[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
+[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,15);
 Sid=clean_Sid(Sid);
 number=[];
 for i=1:size(Sid,1)
@@ -45,6 +48,9 @@ non_EH_partner=stable_non_EH(unmatched_CUE,InfD,InfD_preference,unmatched_CUE_pr
 EE_link_non_EH=final_EE_non_EH(InfD,non_EH_partner,EE_non_EH);
 sum_EE_non_EH=sum(EE_link_non_EH);
 
-
-final_sum=sum_EE+sum_EE_non_EH;
-
+final_sum(end+1)=sum_EE+sum_EE_non_EH;
+end
+plot(number_CUE_D2D,final_sum,'-o');
+title('Sum Energy Efficiency against number of D2D or CUE');
+xlabel('Number of D2D or CUE');
+ylabel('Sum Energy Efficiency');
