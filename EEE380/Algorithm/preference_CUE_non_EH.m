@@ -1,20 +1,14 @@
-function [CUE_preference,original]=preference_CUE(hiB,PiD,EhaD,CUE,Sid)
-list={};
+function [CUE_preference,original]=preference_CUE_non_EH(unmatched_CUE,InfD,hiB,PiD,CUE)
 CUE_preference={};
-for k=1:size(CUE,1)
+list={};
+for k=1:size(unmatched_CUE,2)
     temp={};
-    CUE_coordinate=CUE(k,:);
-    for i=1:size(EhaD,2)
-        Sid_sub=Sid{i,1};
+    CUE_coordinate=CUE(unmatched_CUE,:);
+    for i=1:size(InfD,2)
         PiD_sub=PiD{i,1};
-        hiB_sub=hiB(EhaD(i));
-        index=Sid_location(Sid_sub,CUE_coordinate);
-        if index==-1
-            temp{1,i}=[];
-        else
-            PiD_interference=PiD_sub{1,index};
-            temp{1,i}=interference(hiB_sub,PiD_interference);
-        end
+        PiD_interference=PiD_sub{1,k};
+        hiB_sub=hiB(InfD(i));
+        temp{1,i}=interference(hiB_sub,PiD_interference);
     end
     list{k,1}=temp;
 end
@@ -43,4 +37,5 @@ for i=1:size(list,1)
     end
     CUE_preference{i,1}=preference_interference_value;
     CUE_preference{i,2}=preference_interference_index;
+end
 end

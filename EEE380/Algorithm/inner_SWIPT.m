@@ -82,7 +82,7 @@ for q=1:size(partner,1)
             end
             t=t+1;
             if t>I
-               PiD_sub(j)=check_complex(PiD);
+                 PiD_sub(j)=check_complex(PiD);
                  lambda_sub(j)=check_complex(lambda);
                  EE_sub(j)=check_complex(QiD);
                break;

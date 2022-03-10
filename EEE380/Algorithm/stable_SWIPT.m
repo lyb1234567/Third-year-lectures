@@ -1,4 +1,4 @@
-function [matched_partner,unmatched_CUE]=stable(CUE,EhaD,Sid,D2D_preference,CUE_preference)
+function [matched_partner,unmatched_CUE]=stable_SWIPT(CUE,EhaD,Sid,D2D_preference,CUE_preference)
 
 matched_partner=containers.Map('KeyType','int32','ValueType','int32');
 EhaD_sub=EhaD;
