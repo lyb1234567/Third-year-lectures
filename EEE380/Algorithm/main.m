@@ -12,7 +12,7 @@ Tmin=2;
 N0=1*10^(-13);
 N1=1*10^(-13);
 % Using Pre-Matching 
-[D2D,CUE]=system_model(number_sub,number_sub,15);
+[D2D,CUE]=system_model(number_sub,number_sub,15);a
 plot_model(D2D,CUE);
 % [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
 % Sid=clean_Sid(Sid);
