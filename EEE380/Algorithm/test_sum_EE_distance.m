@@ -1,10 +1,11 @@
-function test_sum_EE_CUE_transmission_power()
+function test_sum_EE_distance()
 %Parameter from Parameter table
+Pkc=0.1995262315;
 final_sum=[];
-Pkc_array=[0.00001 0.0001 0.001 0.01 0.1];
-for j=1:size(Pkc_array,2)
+distance=[10 20 30 40 50 60];
+for j=1:size(distance,2)
 j
-Pkc=Pkc_array(j);
+distance_sub=distance(j);
 sum_EE=[];
 Pth1=10*10^(-6);
 Pmax=0.1995262315;
@@ -13,9 +14,12 @@ Tmin=2;
 N0=1*10^(-13);
 N1=1*10^(-13);
 % Using Pre-Matching 
-[D2D,CUE]=system_model(30,30,10);
+[D2D,CUE]=system_model(30,30,distance_sub);
 plot_model(D2D,CUE);
-[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,10);
+% [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
+% Sid=clean_Sid(Sid);
+% hki=clean_hki(hki,Sid,CUE);
+[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,distance_sub);
 Sid=clean_Sid(Sid);
 number=[];
 for i=1:size(Sid,1)
@@ -46,13 +50,11 @@ non_EH_partner=stable_non_EH(unmatched_CUE,InfD,InfD_preference,unmatched_CUE_pr
 EE_link_non_EH=final_EE_non_EH(InfD,non_EH_partner,EE_non_EH);
 sum_EE_non_EH=sum(EE_link_non_EH);
 
-final_sum(end+1)=sum_EE+sum_EE_non_EH
+final_sum(end+1)=sum_EE+sum_EE_non_EH;
 end
-final_sum
-Pkc_array=W_to_dBm(Pkc_array);
-plot(Pkc_array,final_sum,'-o');
-title('Sum Energy Efficiency against CUE transmission power');
-xlabel('CUE transmission power[dBm]');
-ylabel('Sum Energy Efficiency[bits/Hz/J]');
-saveas(gcf,[pwd '/simulation_results/Sum Energy Efficiency against CUE transmission power.fig']);
+plot(distance,final_sum,'-o');
+title('Sum Energy Efficiency against number of D2D or CUE');
+xlabel('Communication distance r(m)');
+ylabel('Sum Energy Efficiency [bits/Hz/J]');
+saveas(gcf,[pwd '/simulation_results/Sum Energy Efficiency against communication distance.fig']);
 end
