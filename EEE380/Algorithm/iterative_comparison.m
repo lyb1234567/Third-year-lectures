@@ -20,14 +20,15 @@ for i=1:size(D2D,1)
         beta=random(0,1);
         gamma=random(0,1);
         while t<=I
+            PiD
             UiD_SE=UiD_SE_comparsion(delta_I,PiD,hiD_sub,hki_sub,Pkc);
             Tik=Power_consumption_comparsion(Pkc,PiD,delta_E,hiD_sub,hki_sub);
             if UiD_SE-Tik*QiD>phi
                 QiD=UiD_SE/Tik;
-                beta_=beta+s*(PiD-Pmax);
+                beta_=beta+s*(PiD-Pmax)
                 beta=max([0 beta_]);
                 
-                gamma_=gamma-s*(UiD_SE-USE_min);
+                gamma_=gamma-s*(UiD_SE-USE_min)
                 gamma=[0 gamma_];
             else
                 QiD_optimal(i,k)=QiD;
