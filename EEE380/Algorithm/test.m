@@ -6,3 +6,4 @@ Tmin=2;
 [D2D,CUE]=system_model(20,20,10);
 [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,10);
 [QiD_optimal,PiD_optimal]=iterative_comparison(CUE,D2D,Pmax,Pkc,USE_min,hiD,hki);
+preference_D2D_comparison=Preference_comparison(D2D,QiD_optimal);

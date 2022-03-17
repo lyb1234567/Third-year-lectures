@@ -30,15 +30,15 @@ for i=1:size(D2D,1)
                 gamma_=gamma-s*(UiD_SE-USE_min);
                 gamma=max([0 gamma_]);
             else
-                QiD_optimal(i,k)=QiD;
-                PiD_optimal(i,k)=PiD;
+                QiD_optimal(i,k)=max([0 QiD]);
+                PiD_optimal(i,k)=max([0 PiD]);
                 break;
             end
             t=t+1;
             PiD=PiD_comparison(beta,gamma,QiD,delta_I,delta_E,hiD_sub,hki_sub,Pkc);
             if t>I
-                 PiD_optimal(i,k)=PiD;
-                 QiD_optimal(i,k)=QiD;
+                 PiD_optimal(i,k)=max([0 PiD]);
+                 QiD_optimal(i,k)=max([0 QiD]);
                  break;
             end
         end
