@@ -1,7 +1,6 @@
 function [QiD_optimal,PiD_optimal]=iterative_comparison(CUE,D2D,Pmax,Pkc,USE_min,hiD,hki)
-
-N0=1*10^(-13);
-N1=1*10^(-13);
+ N0=3.9810717055e-15;
+ N1=3.9810717055e-15;
 eta=0.35;
 I=10;
 phi=0;
