@@ -1,30 +1,41 @@
-function [lambda_final,PiD_final,EE_final]=inner_Linear_SWIPT(Pkc,D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc)
-k=0.8;
-b=0;
+function [lambda_final,EE_final]=inner_Random_matching_SWIPT(Pkc,D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc)
+%parameter initialization`
+b=[0 -1.6613 -19.1737 108.2778]*10^(-6);
+k=[ 0 0.3899 0.6967 0.1427];
+N0=1*10^(-13);
+N1=1*10^(-13);
 Pmax=0.1995262315;
+Pth1=10*10^(-6);
 Tmin_D=2;
 Tmin_C=1;
 s=1*10^(-5);
 Pth=[10 100 230.06 57368]*10^(-6);
 
-PiD_final={};
+
+%output initialization
 lambda_final={};
 EE_final={};
 
+%inner loop
 for i=1:size(EhaD,2)
     hiD_sub=hiD(EhaD(i));
     hiB_sub=hiB(EhaD(i));
     partner=Sid{i,1};
     hki_sub=hki{i,1};
-    PiD_array={};
     lambda_array={};
     EE_array={};
-    for q=1:size(partner,1)
-        PiD_sub=[];
-        lambda_sub=[];
-        EE_sub=[];
-        location=location_CUE(CUE,partner(q,:));
-        PiD_initial=random(0,0.2);
+for q=1:size(partner,1)
+    PiR_max=Pmax*hiD_sub+Pkc*hki_sub{1,q}+N0;
+    [EH,Nmax]=EH_model(PiR_max);
+    lambda_sub=[];
+    EE_sub=[];
+    location=location_CUE(CUE,partner(q,:));
+    if Nmax==0
+       lambda_sub(end+1)=0;
+       EE_sub(end+1)=0;
+    end
+    for j=1:Nmax
+        PiD_initial=Pmax;
         QiD=random(0,10);
         alpha=random(0,1);
         beta=random(0,1);
@@ -32,14 +43,15 @@ for i=1:size(EhaD,2)
         delta=random(0,1);
         in=random(0,1);
         t=1;
-        lambda=lambda_fix_PiD(PiD_initial,alpha,beta,gamma,delta,in,hiD_sub,hki_sub{1,q},k,QiD);
+        I=4;
+        lambda=lambda_fix_PiD(PiD_initial,alpha,beta,gamma,delta,in,hiD_sub,hki_sub{1,q},k(j),QiD);
         while t<=I
-            PiD=PiD_fix_lambda(lambda,alpha,beta,gamma,delta,in,hiD_sub,hki_sub{1,q},hkc(location),hiB_sub,k,QiD);
-            lambda=lambda_fix_PiD(PiD,alpha,beta,gamma,delta,in,hiD_sub,hki_sub{1,q},k,QiD);
+            PiD=Pmax;
+            lambda=lambda_fix_PiD(PiD,alpha,beta,gamma,delta,in,hiD_sub,hki_sub{1,q},k(j),QiD);
             T_D=Throughput_D(lambda,PiD,hiD_sub,hki_sub{1,q});
             T_C=Throughput_C(hkc(location),hiB_sub,PiD);
             PiR=received_power(lambda, PiD,hiD_sub,hki_sub{1,q});
-            EH=PiR*k+b;
+            [EH,n]=EH_model(PiR);
             EC=Energy_Consumption(PiD,EH);
             if T_D-QiD*EC>phi
               QiD=T_D/EC;
@@ -58,25 +70,22 @@ for i=1:size(EhaD,2)
               in_=in-s*(PiR-Pth(1));
               in=max([0 in_]);
             else
-                PiD_sub(end+1)=check_complex(PiD);
-                 lambda_sub(end+1)=check_complex(lambda);
-                 EE_sub(end+1)=check_complex(QiD);
+                 lambda_sub(j)=check_complex(lambda);
+                 EE_sub(j)=check_complex(QiD);
                break;
             end
             t=t+1;
             if t>I
-                 PiD_sub(end+1)=check_complex(PiD);
-                 lambda_sub(end+1)=check_complex(lambda);
-                 EE_sub(end+1)=check_complex(QiD);
+                 lambda_sub(j)=check_complex(lambda);
+                 EE_sub(j)=check_complex(QiD);
                break;
             end
         end
-         PiD_array{1,q}=PiD_sub;
-         lambda_array{1,q}=lambda_sub;
-         EE_array{1,q}=EE_sub;
     end
-    PiD_final{i,1}= PiD_array;
-    lambda_final{i,1}=lambda_array;
-    EE_final{i,1}=EE_array;
+    lambda_array{1,q}=lambda_sub;
+    EE_array{1,q}=EE_sub;
+end
+lambda_final{i,1}=lambda_array;
+EE_final{i,1}=EE_array;
 end
 end

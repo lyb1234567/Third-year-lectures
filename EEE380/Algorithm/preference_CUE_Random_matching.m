@@ -1,18 +1,18 @@
-function [CUE_preference,original]=preference_CUE(hiB,PiD,EhaD,CUE,Sid)
+function [CUE_preference,original]=preference_CUE_Random_matching(hiB,EhaD,CUE,Sid)
 list={};
 CUE_preference={};
+Pmax=0.1995262315;
 for k=1:size(CUE,1)
     temp={};
     CUE_coordinate=CUE(k,:);
     for i=1:size(EhaD,2)
         Sid_sub=Sid{i,1};
-        PiD_sub=PiD{i,1};
         hiB_sub=hiB(EhaD(i));
         index=Sid_location(Sid_sub,CUE_coordinate);
         if index==-1
             temp{1,i}=[];
         else
-            PiD_interference=PiD_sub{1,index};
+            PiD_interference=Pmax;
             temp{1,i}=interference(hiB_sub,PiD_interference);
         end
     end

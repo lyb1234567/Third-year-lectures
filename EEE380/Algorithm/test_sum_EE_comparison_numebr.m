@@ -7,10 +7,11 @@ Number=[10 20 30 40 50];
 sum_final_comparison=[];
 sum_final_original=[];
 sum_final_linear=[];
+sum_final_Random_matching=[];
 for n=1:size(Number,2)
 n
-[D2D,CUE]=system_model(Number(n),Number(n),20);
-[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,20);
+[D2D,CUE]=system_model(Number(n),Number(n),10);
+[Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,10);
 [QiD_optimal,PiD_optimal]=iterative_comparison(CUE,D2D,Pmax,Pkc,USE_min,hiD,hki);
 preference_D2D_comparison=Preference_D2D_comparison(D2D,QiD_optimal);
 [preference_CUE_comparison,Energy_harvested]=Preference_CUE_comparison(PiD_optimal,D2D,CUE,hki,hkc,Pkc);
@@ -67,8 +68,21 @@ EE_link_non_EH_linear=final_EE_non_EH(InfD,non_EH_partner_linear,EE_non_EH_linea
 sum_EE_non_EH_linear=sum(EE_link_non_EH_linear);
 
 sum_final_linear(end+1)=sum_EE_linear_SWIPT+sum_EE_non_EH_linear
+
+
+%Random Matching with Pmax
+[lambda_final_SWIPT,EE_final_SWIPT]=inner_Random_matching_SWIPT(Pkc,D2D,CUE,EhaD,Sid,I,phi,hiD,hki_SWIPT,hiB,hkc);
+[lambda_optimal_Random_matching,EE_optimal_Random_matching]=outer_Random_matching(Pkc,lambda_final_SWIPT,EE_final_SWIPT,hiD,hki_SWIPT,EhaD,Sid);
+D_preference_Random_matching=preference_D2D(EE_optimal_Random_matching,EhaD);
+[CUE_preference_Random_matching,original]=preference_CUE_Random_matching(hiB,EhaD,CUE,Sid);
+[final_partner_Random_matching,unmatched_CUE_Random_matching]=stable_SWIPT(CUE,EhaD,Sid,D_preference_Random_matching,CUE_preference_Random_matching);
+EE_link_Random_matching=final_EE(EhaD,final_partner_Random_matching,EE_optimal_Random_matching,CUE,Sid);
+sum_EE_Random_matching=sum(EE_link_Random_matching);
+
+sum_final_Random_matching(end+1)=sum_EE_Random_matching;
+
 end
-plot(Number,sum_final_original,'-^',Number,sum_final_comparison ,'-s',Number,sum_final_linear,'o');
+plot(Number,sum_final_original,'-^',Number,sum_final_comparison ,'-s',Number,sum_final_linear,'-o',Number,sum_final_Random_matching,'-rp');
 xlabel('Number of D2D links or CUE links');
 ylabel('Sum Energy Efficiency [bits/Hz/J]');
-legend('Piecewise Linear EH model','Scheme in [11]','Linear EH model');
+legend('Piecewise Linear EH model','Scheme in [11]','Linear EH model','Random Matching with Pmax');
