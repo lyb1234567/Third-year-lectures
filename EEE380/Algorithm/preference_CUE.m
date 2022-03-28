@@ -38,6 +38,11 @@ for i=1:size(list,1)
         [argvalue, argmin]=min(temp);
         preference_interference_value(end+1)=argvalue;
         index=find(temp_sub==argvalue);
+        if size(index,2)>1
+            preference_interference_index=[preference_interference_index index];
+            temp(temp==argvalue)=[];
+            continue;
+        end
         preference_interference_index(end+1)=temp_number(index);
         temp(temp==argvalue)=[];
     end

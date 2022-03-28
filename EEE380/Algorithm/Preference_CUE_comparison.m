@@ -20,6 +20,11 @@ for k=1:size(CUE,1)
     EH_array=[];
     for j=1:size(temp,2)
         index=find(Energy_harvested_sub==temp(j));
+        if size(index,2)>1
+            index_array=[index_array index];
+            EH_array(end+1)=temp(j);
+            continue;
+        end
         index_array(end+1)=index;
         EH_array(end+1)=temp(j);
     end
