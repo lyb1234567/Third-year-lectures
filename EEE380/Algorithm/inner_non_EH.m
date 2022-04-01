@@ -39,10 +39,10 @@ for i=1:size(InfD,2)
 
               beta_=beta-s*(T_D-Tmin_D);
               beta=max([0 beta_]);
-              continue;
            else
                  PiD_sub=check_complex(PiD);
                  EE_sub=check_complex(QiD);
+                 break;
            end
            t=t+1;
 %            if t>I

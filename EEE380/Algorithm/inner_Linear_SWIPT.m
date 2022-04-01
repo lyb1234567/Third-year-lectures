@@ -1,5 +1,5 @@
 function [lambda_final,PiD_final,EE_final]=inner_Linear_SWIPT(Pkc,D2D,CUE,EhaD,Sid,I,phi,hiD,hki,hiB,hkc)
-k=0.8;
+k=0.1;
 b=0;
 Pmax=0.1995262315;
 Tmin_D=2;

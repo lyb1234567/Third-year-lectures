@@ -11,8 +11,6 @@ sum_final_Random_matching=[];
 for n=1:size(distance,2)
  n
 [D2D,CUE]=system_model(20,20,distance(n));
-D2D
-CUE
 [Sid,InfD,EhaD,hiD,hki,hiB,hkc]=Prematch(D2D,CUE,Pkc,Pth1,Pmax,Tmin,distance(n));
 [QiD_optimal,PiD_optimal]=iterative_comparison(CUE,D2D,Pmax,Pkc,USE_min,hiD,hki);
 preference_D2D_comparison=Preference_D2D_comparison(D2D,QiD_optimal);
@@ -81,7 +79,17 @@ D_preference_Random_matching=preference_D2D(EE_optimal_Random_matching,EhaD);
 EE_link_Random_matching=final_EE(EhaD,final_partner_Random_matching,EE_optimal_Random_matching,CUE,Sid);
 sum_EE_Random_matching=sum(EE_link_Random_matching);
 
-sum_final_Random_matching(end+1)=sum_EE_Random_matching;
+hki_non_EH=clean_hki_non_EH(InfD,hki,unmatched_CUE_Random_matching);
+EE_non_EH_Random_matching=inner_non_EH_Random_matching(Pkc,D2D,CUE,InfD,unmatched_CUE_Random_matching,I,phi,hiD,hki_non_EH,hiB,hkc);
+InfD_D2D_preference=Random_Matching_non_EH_D2D_preference(EE_non_EH_Random_matching,InfD);
+[InfD_CUE_preference,original_EE]=Random_matching_preference_CUE_non_EH(unmatched_CUE_Random_matching,InfD,hiB,CUE);
+non_EH_partner=stable_non_EH(unmatched_CUE_Random_matching,InfD,InfD_D2D_preference,InfD_CUE_preference);
+EE_link_non_EH=final_EE_non_EH_Random_Matching(InfD,non_EH_partner,EE_non_EH_Random_matching);
+sum_EE_non_EH_Random=sum(EE_link_non_EH);
+
+sum_final_Random_matching(end+1)=sum_EE_Random_matching+sum_EE_non_EH_Random;
+
+
 
 end
 plot(distance,sum_final_original,'-^',distance,sum_final_comparison ,'-s',distance,sum_final_linear,'-o',distance,sum_final_Random_matching,'-rp');
