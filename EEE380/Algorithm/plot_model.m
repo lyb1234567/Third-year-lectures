@@ -27,17 +27,17 @@ yunit = r * sin(th) + y;
 BS=0;
 plot(xunit,yunit)
 hold on
-scatter([0],BS,140,'filled','d');
+scatter([0],BS,200,'filled','d');
 hold on
-scatter(D2D_TX_x,D2D_TX_y);
+scatter(D2D_TX_x,D2D_TX_y,200);
 hold on
-scatter(D2D_RX_x,D2D_RX_y,'filled','s');
+scatter(D2D_RX_x,D2D_RX_y,200,'filled','s');
 hold on
-scatter(CUE_x,CUE_y,'^');
+scatter(CUE_x,CUE_y,200,'^');
 hold off
 legend('System','BS','D2D_TX','D2D_RX','CUE');
 title('Single cellular network')
 xlabel('Location in x(m)')
 ylabel('Location in y(m)')
-set(gca,'FontSize',15,'FontWeight','Bold')
+set(gca,'FontSize',18,'FontWeight','Bold')
 end
