@@ -28,6 +28,7 @@ subplot(4,2,3)
 plot(time,noise);
 xlabel('time(ms)');
 ylabel('noise(mv)');
+<<<<<<< HEAD
 title('Noise Signal');
 noise_fft=fft(noise);
 noise_fftshift=fftshift(abs(noise_fft));
@@ -37,10 +38,33 @@ f_shift=(-L/2:L/2-1)*(fs/L);
 
 subplot(4,2,4)
 plot(f_shift,noise_fftshift/max(noise_fftshift));
+=======
+
+%plot the fft figure of noise and origin
+
+%fft of noise
+noise_fft=fft(noise);
+noise_fft_shift=fftshift(abs(noise_fft));
+L=size(noise,2);
+
+%fft of origin
+origin_fft=fft(origin);
+origin_fft_shift=fftshift(abs(origin_fft));
+
+figure
+f_range= fs*(-L/2:(L-1)/2)/L;
+subplot(2,1,1);
+plot(f_range,noise_fft_shift/max(noise_fft_shift));
+>>>>>>> 37574dee5e761fb96909603453da77d1fc067746
 xlabel('frequency (Hz)');
 ylabel('Amplitude (mV)');
 title('Noise in the frequency domain');
 
+subplot(2,1,2);
+plot(f_range,origin_fft_shift/max(origin_fft_shift));
+xlabel('frequency (Hz)');
+ylabel('Amplitude (mV)');
+title('Original signal in the frequency domain');
 
 
 fd=60;
