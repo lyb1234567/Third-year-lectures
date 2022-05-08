@@ -12,22 +12,35 @@ f_shift=(-L/2:L/2-1)*(fs/L);
 
 plot(time,origin);
 xlabel('time(ms)');
-ylabel('original(mv)');
+ylabel('Amplitude(mv)');
 grid on
-title('Original signal');
+title('Filtered Noise using FIR');
 
 hold on
 filtered_noise_FIR_Hann=filter(Hann_Coefficient,1,noise);
 plot(time,filtered_noise_FIR_Hann);
+legend('Original','FIR filtered');
+
+figure
+plot(time,origin);
+hold on
+fd=60;
+Wn=(fd)/(0.5*fs);
+[b1 a1]= butter(17,Wn,'low');
+filtered_noise = filter(b1,a1,noise); 
+plot(time,filtered_noise);
+grid on
+legend('Original','IIR filtered');
+xlabel('time(ms)');
+ylabel('Amplitude(mv)');
+title('Filtered Noise using IIR');
 
 figure
 origin_fft=fft(origin);
 origin_fftshift=fftshift(abs(origin_fft));
 subplot(3,1,1);
 plot(f_shift,origin_fftshift/max(origin_fftshift));
-xlabel('frequency (Hz)');
-ylabel('Amplitude (mV)');
-title('Origin in the frequency domain');
+
 
 
 

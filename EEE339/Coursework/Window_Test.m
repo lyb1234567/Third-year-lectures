@@ -1,33 +1,19 @@
+N=20;
 fs=359.9;
-w_pass=(2*pi*70)/fs;
-N=18;
-w_stop=(8*pi/N)+w_pass;
-alpha=round((N-1)/2);
+a=hann(N);
+b=hamming(N);
+c=rectwin(N);
 
-omega=w_pass;
-
-h=[];
-for n=0:N-1
-    if n-alpha==0
-        h(end+1)=(1/pi)*omega*(cos(omega*0));
-        continue;
-    end
-    A=sin(omega*(n-alpha));
-    B=pi*(n-alpha);
-    C=1-cos((2*pi*n)/(N-1));
-    h(end+1)=(A/B)*(C/2);
-    
-end
-array=0:N-1;
-figure 
-plot(array,h);
-grid on
-wvtool(h)
-figure 
-
-number=1:N;
-[h_FIR,f_FIR]=freqz(h,1,'whole',1000,fs);
-N_FIR=round(0.5*length(h_FIR));
-plot(f_FIR(1:N_FIR),20*log10(abs(h_FIR(1:N_FIR))));
+[h_a,f_FIR_a]=freqz(a,1,'whole',2001,fs);
+[h_b,f_FIR_b]=freqz(b,1,'whole',2001,fs);
+[h_c,f_FIR_c]=freqz(c,1,'whole',2001,fs);
+N_FIR=round(0.5*length(h_a));
+plot(f_FIR_a(1:N_FIR),20*log10(abs(h_a(1:N_FIR))));
+hold on
+plot(f_FIR_b(1:N_FIR),20*log10(abs(h_b(1:N_FIR))));
+hold on
+plot(f_FIR_c(1:N_FIR),20*log10(abs(h_c(1:N_FIR))));
 xlabel('Frequency (Hz)');ylabel('Magnitude (dB)');
-grid on;title('Frequency response of FIR filter');
+legend('Hanning','Hamming','Rectangular');
+grid on;title(['N=', num2str(N)]);
+clear 
