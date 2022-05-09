@@ -61,11 +61,25 @@ ylabel('Amplitude (mV)');
 title('filtered noise using FIR in the frequency domain');
 
 figure
+[h_IIR,f_IIR] = freqz(b1,a1,'whole',2001,fs);
+N_IIR=round(0.5*length(h_IIR));
+plot(f_IIR(1:N_IIR),20*log10(abs(h_IIR(1:N_IIR))));
+xlabel('Normalized Frequency (Hz)');ylabel('Magnitude (dB)');
+grid on; title('Frequency response of IIR filter');
+
+figure
 [h_FIR,f_FIR]=freqz(Hann_Coefficient,1,'whole',2001,fs);
 N_FIR=round(0.5*length(h_FIR));
 plot(f_FIR(1:N_FIR),20*log10(abs(h_FIR(1:N_FIR))));
 xlabel('Frequency (Hz)');ylabel('Magnitude (dB)');
 grid on;title('Frequency response of FIR filter');
+
+figure 
+plot(time,noise);
+xlabel('time(ms)');
+ylabel('Amplitude(mV)');
+title('Noise');
+
 
 figure
 origin_fft=fft(origin);
@@ -79,11 +93,7 @@ xlabel('frequency(Hz)');
 ylabel('V_noise/V_origin');
 title('Change between original signal and filtered noise using IIR');
 
-figure 
-plot(time,noise);
-xlabel('time(ms)');
-ylabel('Amplitude(mV)');
-title('Noise');
+
 
 figure
 origin_fft=fft(origin);
