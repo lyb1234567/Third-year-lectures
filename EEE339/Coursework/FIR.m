@@ -67,3 +67,36 @@ plot(f_FIR(1:N_FIR),20*log10(abs(h_FIR(1:N_FIR))));
 xlabel('Frequency (Hz)');ylabel('Magnitude (dB)');
 grid on;title('Frequency response of FIR filter');
 
+figure
+origin_fft=fft(origin);
+origin_fftshift=fftshift(abs(origin_fft));
+filtered_noise_fft=fft(filtered_noise);
+filtered_noise_fftshift=fftshift(abs(filtered_noise_fft));
+origin_freq=origin_fftshift/max(origin_fftshift);
+noise_freq=filtered_noise_fftshift/max(filtered_noise_fftshift);
+plot(f_shift,noise_freq);
+xlabel('frequency(Hz)');
+ylabel('V_noise/V_origin');
+title('Change between original signal and filtered noise using IIR');
+
+figure 
+plot(time,noise);
+xlabel('time(ms)');
+ylabel('Amplitude(mV)');
+title('Noise');
+
+figure
+origin_fft=fft(origin);
+origin_fftshift=fftshift(abs(origin_fft));
+filtered_noise_Hann_fft=fft(filtered_noise_FIR_Hann);
+filtered_noise_Hann_fftshift=fftshift(abs(filtered_noise_Hann_fft));
+origin_freq=origin_fftshift/max(origin_fftshift);
+noise_freq=filtered_noise_Hann_fftshift/max(filtered_noise_Hann_fftshift);
+plot(f_shift,noise_freq);
+xlabel('frequency(Hz)');
+ylabel('Amplitude (mv)');
+title('Change between original signal and filtered noise using FIR');
+
+
+
+

@@ -99,7 +99,7 @@ grid on;title('Frequency response of FIR filter with Equirriple');
 figure 
 [h_IIR,f_IIR] = freqz(b1,a1,'whole',2001,fs);
 N_IIR=round(0.5*length(h_IIR));
-plot(f_IIR(1:N_IIR),20*log10(abs(h_IIR(1:N_IIR))));
+plot(f_IIR(1:N_IIR)/fs,20*log10(abs(h_IIR(1:N_IIR))));
 xlabel('Normalized Frequency (f/fs)');ylabel('Magnitude (dB)');
 grid on;title('Frequency response of IIR filter');
 
