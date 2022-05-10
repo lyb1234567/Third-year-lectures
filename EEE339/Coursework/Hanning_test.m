@@ -6,6 +6,13 @@ load 'Hann_19.mat'
 load 'Hann_20.mat'
 
 fs=359.9;
+fc=70;
+N=[15 16 17 18 19 20];
+fstop=[];
+
+for i=1:5
+    fstop(end+1)=((4*fs)/(N(i)))+fc;
+end
 
 [h_FIR_15,f_FIR_15]=freqz(Hann_15,1,'whole',2001,fs);
 [h_FIR_16,f_FIR_16]=freqz(Hann_16,1,'whole',2001,fs);
@@ -14,6 +21,7 @@ fs=359.9;
 [h_FIR_19,f_FIR_19]=freqz(Hann_19,1,'whole',2001,fs);
 [h_FIR_20,f_FIR_20]=freqz(Hann_20,1,'whole',2001,fs);
 N_FIR=round(0.5*length(h_FIR_15));
+
 
 plot(f_FIR_15(1:N_FIR),20*log10(abs(h_FIR_15(1:N_FIR))));
 hold on
@@ -29,7 +37,7 @@ plot(f_FIR_20(1:N_FIR),20*log10(abs(h_FIR_20(1:N_FIR))));
 
 xlabel('Frequency(Hz)');
 ylabel('Atteunation(dB)');
-title('Frequency response of FIR filters with different order');
+title([ 'Cutoff=',num2str(f_FIR_15(335)),'Hz','   Noise frequency:',num2str(f_FIR_15(652)),' Hz-',num2str(f_FIR_15(781)),'Hz']);
 K_c_15=20*log10(abs(h_FIR_15(335)));
 K_c_16=20*log10(abs(h_FIR_16(335)));
 K_c_17=20*log10(abs(h_FIR_17(335)));
@@ -51,4 +59,21 @@ D=['N=18  Kpass=',num2str(K_c_18),'dB',' K_stop=',num2str(K_stop_18),'dB'];
 E=['N=19  Kpass=',num2str(K_c_19),'dB',' K_stop=',num2str(K_stop_19),'dB'];
 F=['N=20  Kpass=',num2str(K_c_20),'dB',' K_stop=',num2str(K_stop_20),'dB'];
 legend(A,B,C,D,E,F);
+
+figure
+plot(f_FIR_15(652:781),20*log10(abs(h_FIR_15(652:781))));
+hold on
+plot(f_FIR_16(652:781),20*log10(abs(h_FIR_16(652:781))));
+hold on
+plot(f_FIR_17(652:781),20*log10(abs(h_FIR_17(652:781))));
+hold on
+plot(f_FIR_18(652:781),20*log10(abs(h_FIR_18(652:781))));
+hold on
+plot(f_FIR_19(652:781),20*log10(abs(h_FIR_19(652:781))));
+hold on
+plot(f_FIR_20(652:781),20*log10(abs(h_FIR_20(652:781))));
+xlabel('Frequency(Hz)');
+ylabel('Atteunation(dB)');
+title('Atteunation between 117Hz and 140Hz');
+legend('N=15','N=16','N=17','N=18','N=19','N=20');
 
