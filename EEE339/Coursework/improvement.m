@@ -36,7 +36,7 @@ title('Filtered Signal in the frequency domain');
 
 figure 
 N=[4 8 15];
-fd=30;
+fd=60;
 Wn=(fd)/(0.5*fs);
 for i=1:3
 [b1 a1]= butter(N(i),Wn,'low');
@@ -47,7 +47,7 @@ end
 plot(time,origin);
 xlabel('time(ms)');
 ylabel('filtered noise(mv)');
-title('Filtered noise using IIR fc=30Hz');
+title('Filtered noise using IIR fc=60Hz');
 legend('N=4','N=8','N=15','Original');
 
 figure
@@ -59,13 +59,13 @@ plot(f_IIR(1:N_IIR),20*log10(abs(h_IIR(1:N_IIR))));
 hold on
 end
 xlabel('Frequency (Hz)');ylabel('Magnitude (dB)');
-grid on;title('Frequency response of IIR filter fc=30Hz');
+grid on;title('Frequency response of IIR filter fc=60Hz');
 legend('N=4','N=8','N=15');
 
 
 figure
 N=4;
-fd=[10 20 30];
+fd=[20 30 50];
 Wn=fd./(0.5*fs);
 for i=1:3
     [b1 a1]= butter(N,Wn(i),'low');
@@ -77,4 +77,38 @@ plot(time,origin);
 xlabel('time(ms)');
 ylabel('filtered noise(mv)');
 title('Filtered noise using IIR N=4');
-legend('fc=10Hz','fc=20Hz','fc=30Hz','Original');
+legend('fc=20Hz','fc=30Hz','fc=40Hz','Original');
+
+figure
+for n=1:3
+[b1 a1]= butter(4,Wn(n),'low');
+[h_IIR,f_IIR] = freqz(b1,a1,'whole',2001,fs);
+N_IIR=round(0.5*length(h_IIR));
+plot(f_IIR(1:N_IIR),20*log10(abs(h_IIR(1:N_IIR))));
+hold on
+end
+xlabel('Frequency (Hz)');ylabel('Magnitude (dB)');
+grid on;title('Frequency response of IIR filter N=4');
+legend('fc=20Hz','fc=30Hz','fc=40Hz');
+
+figure 
+N=4;
+fd=30;
+Wn=fd./(0.5*fs);
+[b1 a1]= butter(N,Wn,'low');
+filtered_noise = filter(b1,a1,origin); 
+subplot(2,1,1);
+plot(time,filtered_noise);
+xlabel('Time(ms)');
+ylabel('Amplitude(mV)');
+xlim([3.5 4]);
+title('IIR Cut-off:30 Hz N=4');
+
+subplot(2,1,2);
+plot(time,origin);
+xlabel('Time(ms)');
+ylabel('Amplitude(mV)');
+xlim([3.5 4]);
+title('Original');
+
+
