@@ -6,6 +6,11 @@ noise=noisySig';
 Ts=10/3599;
 fs=1/Ts;
 time=0:Ts:10;
+plot(time,origin);
+xlabel('time(ms)');
+ylabel('Amplitude(mv)');
+title('Original signal');
+figure
 L=size(origin,2);
 f_shift=(-L/2:L/2-1)*(fs/L);
 plot(time,origin);
@@ -76,6 +81,7 @@ end
 plot(time,origin);
 xlabel('time(ms)');
 ylabel('filtered noise(mv)');
+xlim([3.52 3.7])
 title('Filtered noise using IIR N=4');
 legend('fc=20Hz','fc=30Hz','fc=40Hz','Original');
 
@@ -101,14 +107,14 @@ subplot(2,1,1);
 plot(time,filtered_noise);
 xlabel('Time(ms)');
 ylabel('Amplitude(mV)');
-xlim([3.5 4]);
+xlim([1.0 4]);
 title('IIR Cut-off:30 Hz N=4');
 
 subplot(2,1,2);
 plot(time,origin);
 xlabel('Time(ms)');
 ylabel('Amplitude(mV)');
-xlim([3.5 4]);
+xlim([1.0 4]);
 title('Original');
 
 

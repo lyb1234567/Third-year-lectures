@@ -9,6 +9,7 @@ Ts=10/3599;
 fs=1/Ts;
 time=0:Ts:10;
 
+figure
 subplot(4,2,1)
 plot(time,origin);
 xlabel('time(ms)');
